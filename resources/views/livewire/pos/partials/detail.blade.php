@@ -48,7 +48,8 @@
 								wire:change="updateQty({{$item->id}}, $('#r' + {{$item->id}}).val() )"
 								style="font-size: 1rem!important"
 								class="form-control text-center" 
-								value="{{$item->quantity}}"																
+								value="{{$item->quantity}}"
+																							
 							>
 						</td>
 						<td class="text-center">

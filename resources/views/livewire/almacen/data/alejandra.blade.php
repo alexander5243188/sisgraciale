@@ -22,7 +22,7 @@
 		<div class="form-group">
 			<label>Seleccionar producto</label>
 			<select wire:model='productoid' class="form-control">
-				<option value="Elegir" disabled>Elegir</option>
+				<option value="" >Elegir</option>
 				@foreach($products as $producto)
 					<option value="{{$producto->id}}">{{$producto->name}}</option>
 				@endforeach

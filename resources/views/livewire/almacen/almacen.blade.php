@@ -34,7 +34,7 @@
 					<div class="col">						
 						<div class="form-group">
 							<select wire:model="productId" class="form-control">
-								<option value="Elegir" disabled>Todos</option>
+								<option value=""  >Selecciona</option>
 								@foreach($products as $lista)
 								<option value="{{$lista->id}}">{{$lista->name}}</option>
 								@endforeach
@@ -45,11 +45,12 @@
 					<a 
 						class="btn btn-primary" 						
 						wire:click.prevent="reporteProducto()" 							
+						
 						data-toggle="collapse" 
-						href="#collapseExample" 
+						href="#" 
 						role="button" 
 						aria-expanded="false" 
-						aria-controls="collapseExample">
+						aria-controls="">
 						Reporte
 					</a> 
 					</div>				
@@ -58,45 +59,32 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="collapse" id="collapseExample">
+						<div class="" id="">
 							<div class="table-responsive">
 								<table class="table table-bordered table striped mt-1">
 									<thead class="text-white" id="table-head">
 										<tr>
-											<th class="table-th text-white">PRODUCTO</th>						
-											<th class="table-th text-white text-center"></th>		
-											<th class="table-th text-white text-center"></th>		
-											<th class="table-th text-white text-center">UBICACION-ESTANTE</th>
-											<th class="table-th text-white text-center">NIVEL</th>								
-											<th class="table-th text-white text-center">CANTIDADES</th>																												
-											<th class="table-th text-white text-center">FECHA</th>	
+											<th class="table-th text-white"></th>						
+											<th class="table-th text-white text-center">CANTIDADES INGRESADAS</th>		
+											<th class="table-th text-white text-center">CANTIDADES VENDIDAS</th>
+											<th class="table-th text-white text-center">TOTAL RESTANTE</th>				
+											
 										</tr>
             						</thead>
 									<tbody>
-										@foreach($data as $product)
-										<tr>
-											<td class="text-left">{{$product->nombre}}</td>	
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-											<td>
-												<h6 class="text-center {{$product->stock <= $product->alert ? 'text-danger' : '' }} "></h6>
-											</td>
-											<td class="text-center"></td>
-
-										</tr>										
-										@endforeach             
+									<tr>
+											<td class="text-center font-weight-bold">TOTALES</td>
+											<td class="text-center">{{$totalIngreso}}</td>
+											<td class="text-center">{{number_format($totalSalida,0)}}</td>	
+											<td class="text-center">{{number_format($totalStock,0)}}</td>
+											<td></td>
+										</tr>
+										             
             						</tbody>
             						<tfoot>
-										<tr>
-											<td colspan="2"><h5 class="text-center font-weight-bold">TOTALES</h5></td>
-											<td><h5 class="text-center">{{$totalIngreso}}</h5></td>
-											<td><h5 class="text-center">{{$totalSalida}}</h5></td>
-											<td><h5 class="text-center">{{number_format($totalStock,2)}}</h5></td>
-										</tr>
+																			
             						</tfoot>
-          						</table>         
+          						</table>								     
         					</div>
 						</div>
 					</div>
@@ -107,7 +95,7 @@
 			
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table class="table table-bordered table striped mt-1">
+					<table class="table table-bordered table-striped mt-1">
 						<thead class="text-white" id="table-head">
 							<tr>
 								<th class="table-th text-white">PRODUCTO</th>						
@@ -139,6 +127,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					{{$data->links()}}   
 				</div>
 			</div>
 		</div>
@@ -148,23 +137,6 @@
 </div>
 
 
-<div>  
-
-    <div class="row layout-top-spacing mt-5">
-
-        <div class="col-sm-12 col-md-6">
-            <div class="widget widget-chart-one">
-                <h4 class="p-3 text-center text-theme-1 font-bold">Lista de cantidades productos {{$year}}</h4>
-                <div id="chartTop5">
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
-   
-
-    @include('livewire.almacen.script')
 
 </div>
 

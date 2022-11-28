@@ -48,13 +48,7 @@ class AlmacenController extends Component
 		$alejandra, $graciela, $repositorio, $nirvana,$alexander,
 		$year, $top5Data = [];
 
-    private $pagination = 50;
-
-	
-    public function paginationView()
-	{
-		return 'vendor.livewire.bootstrap';
-	}
+    private $pagination = 6;
 
     public function mount()
 	{
@@ -64,19 +58,19 @@ class AlmacenController extends Component
 		$this->salidaProducto ='';
 		$this->year = date('Y');
 
-		
-		
-
 		$this->totalStock =0;
 		$this->totalIngreso =0;
 		$this->totalSalida =0;	
-
-		
+	
+	}
+	public function paginationView()
+	{
+		return 'vendor.livewire.bootstrap';
 	}
 
     public function render()
     {
-		
+		//$var = $this->getData();
 		//$this->getTop5();
 		//$this->reporteProducto();		
 		//config(['repositorio' => $graciela]);
@@ -124,6 +118,7 @@ class AlmacenController extends Component
         return view('livewire.almacen.almacen',  [
 			'data' => $data,
 			'products' => Product::orderBy('name', 'asc')->get(),
+			//'nombre' =>$var
 			
 		])
         ->extends('layouts.theme.app')
@@ -150,13 +145,22 @@ class AlmacenController extends Component
 			'fecha' => $this->fechaIngresoAlmacen,
 			'product_id' => $this->productoid,
 			'stock' => $this->cantidadProductoActualizado,
+			'stockI' => $this->cantidadProductoActualizado,
 			'ingreso' => $this->ingresoProducto,
 			'salida' => $this->salidaProducto,
 		]);
+
+		//-------------------------- ACTUALIZAR DATOS DEL PRODUCTO
+		$product = Product::find($almacen->product_id);
+		$temp = $product->stock;
+		//dd($temp);
+		$product->stock = $almacen->stock + $temp;
+		$product->save();
+		//--------------------------
 		$this->resetUI();
 		$this->emit('product-added', 'Producto Registrado');
 	}
-	public function reporteProducto(){
+	public function reporteProducto(){		
 		$productId = $this->productId;
 		//dd($productId);		
 		$alejandra = $productId;
@@ -188,27 +192,61 @@ class AlmacenController extends Component
 		$this->totalSalida = $listaDetalleVenta;		
 
 		
-		$repositorio = $this->reportes($nirvana);
-		//dd($repositorio);		
+		//-----------------------------------------
+		$repositorio = $this->reportesNombre($nirvana);
+		//dd($repositorio);	
 	}
-	
-	public function Edit(Product $product){	}
 	
 	public function resetUI(){}
-	public function reportes($nirvana){		
-		$graciela = DB::table('almacens')
-		->select('almacens.*')
-		->where('almacens.product_id','=',$nirvana)
-		->get();
-		//return($graciela);
-		//dd($graciela);
-		config(['repositorio' => $graciela]);
-		//$alexander = config('repositorio');
-		//dd($alexander);
+	public function reportesNombre($nirvana){				
+		$graciela = Almacen::join('products as p','p.id','almacens.product_id')
+		->select(
+			'almacens.*',
+			'p.name as nombre'			
+		)
+		->where('almacens.product_id','=',$nirvana)	
+		->value('nombre');		
+		$this->busqueda($graciela);		
+		
+		return($graciela);		
 	}
-	
-	
+	public function busqueda($nirvana){
+		$nombre = Almacen::join('products as p','p.id','almacens.product_id')
+		->select(
+			'almacens.*',
+			'p.name as nombre'			
+		)
+		->where('almacens.product_id','=',$nirvana)	
+		->value('nombre');
+		$this->getdata();		
+		$this->Recibir();	
+	}
 
+
+
+	protected function getData()
+	{
+		
+		
+		$nirvana = 1;
+		return Almacen::join('products as p','p.id','almacens.product_id')
+		->select(
+			'almacens.*',
+			'p.name as nombre'			
+		)
+		->where('almacens.product_id','=',$nirvana)	
+		//->value('nombre');
+		->get();
+		
+	}
+
+
+public function Recibir() {
+    $var = $this->getData();
+	//dd($var);
+    
+}
+	
 }
 
 

@@ -44,16 +44,15 @@
                     </a>
                     <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
-                            <div class="media mx-auto">
-                                <img src="assets/img/lara_logo.png" class="img-fluid mr-2" alt="avatar">
+                            <div class="media mx-auto">                                
+                                <img width="50px" height="50px" src="{{ asset('storage/users/'.Auth::user()->image) }}"> 
                                 <div class="media-body">                                    
-                                    <span></span>                                    
+                                    <span>  <p>{{Auth()->user()->profile}}</p> </span>                                    
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown-item">                            
-                                 <p>{{Auth()->user()->name}}</p>                            
-                                 <p>{{Auth()->user()->email}}</p>                                 
+                            <p>{{Auth()->user()->name}}</p>                                                                      
                         </div>
                         
                         
