@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-sm-12 col-md-8">
 	<div class="form-group">
-		<label >Cantidad de producto</label>
+		<label style="color: #000000;" ><b>Cantidad de producto</b></label>
 		<input 
             type="text" 
             wire:model.lazy="stock" 
@@ -13,7 +13,7 @@
         >		
 	</div>
 	<div class="form-group">
-		<label >Precio de compra</label>
+		<label style="color: #000000;"><b>Precio de compra</b></label>
 		<input 
             type="text" 
             wire:model.lazy="cost" 
@@ -23,7 +23,7 @@
         >		
 	</div>
 	<div class="form-group">
-		<label >Precio de venta</label>
+		<label style="color: #000000;"><b>Precio de venta</b></label>
 		<input 
             type="text" 
             wire:model.lazy="price" 

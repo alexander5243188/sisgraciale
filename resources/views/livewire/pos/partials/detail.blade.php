@@ -1,10 +1,12 @@
 <div class="connect-sorting">
 
-<div class="input-group">
-  <span class="input-group-text">Datos Cliente</span>
-  <input type="text" aria-label="nombre_cliente" class="form-control product-name" wire:model.lazy="nombre_cliente"  placeholder="Nombre cliente" autofocus>
-  <input type="text" aria-label="cedula_cliente" class="form-control product-name" wire:model.lazy="cedula_cliente" placeholder="Cedula de identidad" autofocus >
+<!-------------------------------------------------------------------- CLIENTE -->
+<div class="input-group">	
+  <span class="input-group-text"><strong>Datos Cliente</strong></span>
+  <input type="text" aria-label="nombre_cliente" class="form-control product-name" wire:model.lazy="nombre_cliente"  placeholder="Nombre cliente" autofocus required style="outline: none;">
+  <input type="text" aria-label="cedula_cliente" class="form-control product-name" wire:model.lazy="cedula_cliente" placeholder="Cedula de identidad" autofocus required>
 </div>
+<!-------------------------------------------------------------------- CLIENTE -->
 	
 <div class="connect-sorting-content">
 	<div class="card simple-title-task ui-sortable-handle">
@@ -13,7 +15,7 @@
 		@if($total > 0)
 		<div class="table-responsive tblscroll" style="max-height: 650px; overflow: hidden">
 			<table class="table table-bordered table-striped mt-1">
-				<thead class="text-white" id="table-head">
+				<thead class="text-white" id="table-head" style="background: #3B3F5C;">
 					<tr>
 						<th width="10%"></th>
 						<th class="table-th text-left text-white"  width="">DESCRIPCIÓN</th>
@@ -60,19 +62,19 @@
 						<td class="text-center">
 							<button 
 								onclick="Confirm('{{$item->id}}', 'removeItem', '¿CONFIRMAS ELIMINAR EL REGISTRO?')" 
-								class="btn mbmobile"
+								class="btn mbmobile btn-danger"
 								id="button-delete">
 								<i class="fas fa-trash-alt"></i>
 							</button>
 							<button 
 								wire:click.prevent="decreaseQty({{$item->id}})" 
-								class="btn mbmobile" 
+								class="btn mbmobile btn-warning" 
 								id="button-minus">
 								<i class="fas fa-minus"></i>
 							</button>
 							<button 
 								wire:click.prevent="increaseQty({{$item->id}})" 
-								class="btn mbmobile"
+								class="btn mbmobile btn-info"
 								id="button-plus">								
 								<i class="fas fa-plus"></i>
 							</button>

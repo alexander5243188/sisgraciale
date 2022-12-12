@@ -14,7 +14,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+       // $this->middleware('auth',['only'=>['index1']]);
     }
+    //public function index1()  {return view('Dash');  }
 
     /**
      * Show the application dashboard.

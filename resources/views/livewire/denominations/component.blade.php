@@ -9,8 +9,9 @@
 					<ul class="tabs tab-pills">
 						<li>
 							<a 
+								style="background: #023E8A!important;" 
 								href="javascript:void(0)" 
-								class="tabmenu" 
+								class="tabmenu bg-dark" 
 								id="button-add"
 								data-toggle="modal" 
 								data-target="#theModal"
@@ -29,14 +30,12 @@
 				
 				<div class="table-responsive">
 					<table class="table table-bordered table striped mt-1">
-						<thead class="text-white" id="table-head">
+						<thead class="text-white" id="table-head" style="background: #023E8A!important;" >
 							<tr>
 								<th class="table-th text-white">TIPO</th>
 								<th class="table-th text-white text-center">VALOR</th>
-								<th class="table-th text-white text-center"></th>
-								
-									<th class="table-th text-white text-center"></th>
-								
+								<th class="table-th text-white text-center">IMAGEN</th>	
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,15 +44,17 @@
 								<td><h6>{{$coin->type}}</h6></td>
 								<td ><h6 class="text-center">Bs{{number_format($coin->value,2)}}</h6></td>								
 								<td class="text-center">
-									
+									<span>
+										<img src="{{ asset('storage/denominations/' . $coin->imagen ) }}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+									</span>
 								</td>
-
-								<td class="text-center">
+								<td class="text-center">								
 									@can('denominacion_editar')
-										<a 
+										<a
+										style="background: #023E8A!important;"
 											href="javascript:void(0)" 
 											wire:click="Edit({{$coin->id}})"
-											class="btn mtmobile" 
+											class="btn mtmobile btn-dark" 
 											id= "button-edit"
 											title="Editar deneminación">
 											<i class="fas fa-edit"></i>
@@ -64,7 +65,7 @@
 										<a 
 											href="javascript:void(0)"
 											onclick="Confirm('{{$coin->id}}')" 
-											class="btn" 
+											class="btn btn-danger" 
 											id="button-delete" 
 											title="Eliminar denaminación">
 											<i class="fas fa-trash"></i>
@@ -85,11 +86,9 @@
 
 
 	</div>
-	@if ($selected_id < 1)
+	
 		 @include('livewire.denominations.form')
-    @else
-        @include('livewire.denominations.data.form')
-    @endif
+ 
 
 
 </div>

@@ -3,19 +3,20 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <h4 class="card-title">
-                    <b> {{$componentNames}}</b>
+                    <b> {{$componentName}} | {{$pageTitle}}</b>
                 </h4>
                 @can('marca_pagina')
                     <ul class="tabs tab-pills">
                         <li>
                             <a 
+                                style="background: #023E8A!important;"
                                 href="javascript:void(0)" 
-                                class="tabmenu"
+                                class="tabmenu bg-dark"
                                 id="button-add"                            
                                 data-toggle="modal" 
                                 data-target="#theModal"
                                 title="Añadir nueva marca">
-                                Agregar
+                                Registrar nueva marca
                             </a>
                         </li>
                     </ul>
@@ -27,28 +28,31 @@
 
             <div class="widget-content">
                 <div class="table-responsive">
-                    <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                    <table class="table table-bordered table-striped mt-1">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;">
                             <tr>
+                                <th class="table-th text-white">Registro</th>
                                 <th class="table-th text-white">MARCA</th>
-                                <th class="table-th text-white">Registrapo por</th>
-                                <th class="table-th text-white text-center">NACIONALIDAD</th>                                
+                                <th class="table-th text-white text-center">Registrapo por</th>                                                       
+                                <th class="table-th text-white text-center">En fecha</th>  
                                 <th class="table-th text-white text-center">ACCIONES</th>                                                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $brands)
                             <tr>
+                                <td class="text-left"><h6 class="badge badge-primary" >{{$brands->id}}</h6></td>
                                 <td class=""><h6>{{ $brands->name }}</h6></td>                                
-                                <td class=""><h6>{{ $brands->user }}</h6></td> 
-                                <td class=""><h6>{{ $brands->name }}</h6></td> 
-                                <!-- <td class="text-center"><h6>{{ $brands->country }}</h6></td> -->
-                                <td class="text-center">
+                                <td class="text-center"><h6>{{ $brands->user }}</h6></td>                          
+                                <td class="text-center"><h6>{{ \Carbon\Carbon::parse($brands->created_at)->format('d-m-Y')}}</h6></td>
+                                
+                                <td class="text-right">
                                     @can('marca_editar')
                                         <a 
+                                            style="background: #013440!important;"
                                             href="javascript:void(0)" 
                                             wire:click="Edit({{ $brands->id }})"
-                                            class="btn  mtmobile" 
+                                            class="btn mtmobile btn-dark" 
                                             id = "button-edit"
                                             title="Editar marca">
                                             <i class="fas fa-edit"></i>

@@ -4,17 +4,20 @@
             <div class="widget-heading">
                 <h4 class="card-title">
                     <b>{{ $componentName }} </b>
-                </h4>
-                
+                </h4>                    
                     <ul class="tabs tab-pills">
                         <li>
-                            <a href="javascript:void(0)"
-                                class="tabmenu btn "                            
+                        @can('alerta_crear')
+                            <a 
+                                style="background: #023E8A!important;" 
+                                href="javascript:void(0)"
+                                class="tabmenu bg-dark"                            
                                 id="button-add"                        
                                 data-toggle="modal"
                                 data-target="#theModal"
                                 title="Actualizar">Agregar
                             </a>
+                            @endcan
                         </li>
                     </ul>
                 
@@ -25,28 +28,27 @@
             <div class="widget-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
-                                <th class="table-th text-white">ALERTA INVENTARIO</th>
+                                <th class="table-th text-white text-rigth">CÓDIGO</th> 
+                                <th class="table-th text-white text-center">ALERTA INVENTARIO</th>
+                                <th class="table-th text-white text-center">FECHA DE CREACIÓN</th> 
                                 <th class="table-th text-white text-center"></th>
-                                @can('alerta_actualizar')
-                                    <th class="table-th text-white text-center">ACCIONES</th>
-                                @endcan
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $alert)
                                 <tr>
-                                    <td><h6>{{ $alert->name }}</h6></td>
-                                    <td class="text-center">
-
-                                    </td>
+                                    <td><h6>{{ $alert->id }}</h6></td>
+                                    <td><h6 class="text-center">{{ $alert->name }}</h6></td>
+                                    <td><h6 class="text-center"><b>{{$alert->created_at}}</b></h6></td>                             
                                     <td class="text-center">
                                         @can('alerta_editar')
                                             <a 
+                                            style="background: #023E8A!important;"  
                                                 href="javascript:void(0)" 
                                                 wire:click="Edit({{ $alert->id }})"
-                                                class="btn mtmobile" 
+                                                class="btn btn-dark mtmobile" 
                                                 id = "button-edit"
                                                 title="EDITAR VALOR ALERTA">
                                                 <i class="fas fa-edit"></i>

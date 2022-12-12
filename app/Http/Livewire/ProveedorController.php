@@ -116,8 +116,10 @@ class ProveedorController extends Component
         
         
         $this->emit('modal-show','Show modal');
+        
 	}
-    public function Updatee()
+
+    public function Update()
 	{
 		$rules = [
             'name' => "required|min:3|unique:products,name,{$this->selected_id}",
@@ -134,7 +136,7 @@ class ProveedorController extends Component
 		$this->validate($rules, $messages);
 
 		$proveedor = Proveedor::find($this->selected_id);
-dd($proveedor);
+
 		$proveedor->update([
 			'name' =>$this->name,
             'phone' =>$this->phone,
@@ -147,12 +149,25 @@ dd($proveedor);
         //dd($proveedor);
         
         $proveedor->save();
-		$this->resetUI();
-
+		$this->resetUI();      
 		$this->emit('product-updated', 'Producto Actualizado');
 	}
+/***************************** */
+public function Editar(Proveedor $proveedor){
+    $this->selected_id = $proveedor->id;
+		$this->name = $proveedor->name;
+		$this->phone = $proveedor->phone;
+		$this->email = $proveedor->email;
+		$this->addres = $proveedor->addres;
+        $this->nit = $proveedor->nit;
+		$this->description = $proveedor->description;
+		$this->departmentid = $proveedor->department_id;
+        
+        
+        $this->emit('alejandra','Show modal');
+}
 
-
+/****************************** */
 
 
 
@@ -164,5 +179,6 @@ dd($proveedor);
         $this->nit = '';
         $this->description = '';
         $this->departmentid = 0;
+        $this->selected_id = 0;
     }
 }

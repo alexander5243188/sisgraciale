@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'status_id' => 1, //---------------------------------------> LUEGO LO CAMBIAS AL AÑADIR EL ESTADO
             'email' => 'alexander@yahoo.es',
             'password' => bcrypt('alexander'),
-            'image' => '631b8ab9388cb _.jpg'
+            'image' => '639631de7a976_.jpg'
         ]);
         User::create([
             'name' => 'Alejandra',
@@ -38,35 +38,24 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Graciela',
             //'profile' => 'Employee',
-            'profile' => 'Admin',
+            'profile' => 'Vendedor',
             'phone' => '77436343',
             //'status' => 'ACTIVO',
             'status_id' => 1, //--------------------------> LUEGO LO CAMBIAS AL AÑADIR  EL ESTADO
             'email' => 'graciela@yahoo.es',
             'password' => bcrypt('graciela'),
-            'image' => '6376f1ca49073 _.jpg'
+            'image' => '639631afa64da_.jpg'
         ]);
         User::create([
             'name' => 'Nirvana',
             //'profile' => 'Employee',
-            'profile' => 'Admin',
+            'profile' => 'Almacen',
             'phone' => '77467343',
             //'status' => 'ACTIVO',
             'status_id' => 1, //--------------------------> LUEGO LO CAMBIAS AL AÑADIR  EL ESTADO
             'email' => 'nirvana@yahoo.es',
             'password' => bcrypt('nirvana'),
-            'image' => '6376f1ca49073 _.jpg'
-        ]);
-        User::create([
-            'name' => 'Richard',
-            //'profile' => 'Employee',
-            'profile' => 'Vendedor',
-            'phone' => '67467343',
-            //'status' => 'ACTIVO',
-            'status_id' => 1, //--------------------------> LUEGO LO CAMBIAS AL AÑADIR  EL ESTADO
-            'email' => 'richard@yahoo.es',
-            'password' => bcrypt('richard'),
-            'image' => '6376f1ca49073 _.jpg'
-        ]);
+            'image' => '639631f9c1957_.jpg'
+        ]);      
     }
 }

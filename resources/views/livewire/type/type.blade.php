@@ -8,8 +8,9 @@
                 @can('tipo_denominacion_crear')
                     <ul class="tabs tab-pills">
                         <li>
-                            <a href="javascript:void(0)"
-                                class="tabmenu btn "                            
+                            <a  style="background: #023E8A!important;" 
+                                href="javascript:void(0)"
+                                class="tabmenu bg-dark"                            
                                 id="button-add"                        
                                 data-toggle="modal"
                                 data-target="#theModal"
@@ -25,7 +26,7 @@
             <div class="widget-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">DENOMINACIÓN</th>                                                                
                             </tr>
@@ -33,7 +34,7 @@
                         <tbody>
                             @foreach ($data as $denomination)
                                 <tr>
-                                    <td><h6>{{ $denomination->name }}</h6></td>                                 
+                                    <td><h6 class="badge badge-success">{{ $denomination->name }}</h6></td>                                 
                                     
                                 </tr>
                             @endforeach

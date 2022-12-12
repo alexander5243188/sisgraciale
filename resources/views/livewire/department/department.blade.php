@@ -9,8 +9,9 @@
                     <ul class="tabs tab-pills">
                         <li>
                             <a 
+                                style="background: #023E8A!important;" 
                                 href="javascript:void(0)" 
-                                class="tabmenu" 
+                                class="tabmenu bg-dark" 
                                 id="button-add" 
                                 onclick="Confirm()"
                                 data-toggle="modal" 
@@ -27,7 +28,7 @@
             <div class="widget-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">DEPARTAMENTO</th>                                
                                 @can('departamento_actualizar')
@@ -43,6 +44,7 @@
                                 <td class="text-center">
                                     @can('departamento_editar')
                                         <a 
+                                            style="background: #013440!important;" 
                                             href="javascript:void(0)" 
                                             onclick="Confirm()"
                                             class="btn mtmobile" 

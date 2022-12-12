@@ -9,8 +9,8 @@ class Alert extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'              
+        'name',
+        'alert_id'
     ];
-    public function products(){return $this->hasMany(Product::class);}
-    public function almacen(){return $this->hasMany(Almacen::class);}
+    public function products(){return $this->hasMany(Product::class);}   
 }

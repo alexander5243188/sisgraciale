@@ -16,34 +16,47 @@ class CountrySeeder extends Seeder
     {
         //
         DB::table('countries')->insert([
-            'name'=> 'Bolivia'
+            'name'=> 'Bolivia',
+            'image' => '63969dec0c9f4_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Brazil'
+            'name'=> 'Brazil',
+            'image' => '63969dfa1af71_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Chile'
+            'name'=> 'Chile',
+            'image' => '63969e1493427_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'China'
+            'name'=> 'China',
+            'image' => '63969af30cd7f_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Mexico'
+            'name'=> 'Mexico',
+            'image' => '63969e392455d_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Estados Unidos'
+            'name'=> 'Estados Unidos',
+            'image' => '63969e46dd098_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Canada'
+            'name'=> 'Canada',
+            'image' => '63969e064cfe0_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Colombia'
+            'name'=> 'Colombia',
+            'image' => '63969e5260893_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Alemania'
+            'name'=> 'Alemania',
+            'image' => '63969dce584d5_.jpg'
         ]);
         DB::table('countries')->insert([
-            'name'=> 'Taiwan'
+            'name'=> 'Taiwan',
+            'image' => '63969e242b67c_.png'
         ]);        
+
+        //******************************* */
+               
     }
 }

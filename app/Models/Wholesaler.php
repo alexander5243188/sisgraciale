@@ -18,7 +18,7 @@ class Wholesaler extends Model
         'department_id'
     ];
     public function department(){return $this->belongsTo(Department::class);}
-    public function products(){return $this->hasMany(Product::class);}
+   // public function products(){return $this->hasMany(Product::class);}
     public function almacen(){return $this->hasMany(Almacen::class);}
     public function ingresos(){return $this->hasMany(Ingresos::class);}
 }

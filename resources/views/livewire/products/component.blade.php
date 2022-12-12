@@ -4,21 +4,22 @@
 		<div class="widget widget-chart-one">
 			<div class="widget-heading">
 				<h4 class="card-title">
-					<b>{{$componentNames }}</b>
+					<b>{{$componentName}} | {{$pageTitle}}</b>
 				</h4>
 				<ul class="tabs tab-pills">
 					<li>
 											
 						@can('producto_crear')
 						
-							<a 
+							<a
+								style="background: #023E8A!important;" 
 								href="javascript:void(0)" 
-								class="tabmenu" 
+								class="tabmenu bg-dark" 
 								id="button-add"
 								data-toggle="modal" 
 								data-target="#theModal"
 								title="Agregar un nuevo producto">
-								Agregar
+								Registrar nuevo producto
 							</a> 
 						@endcan
 					</li>
@@ -29,12 +30,12 @@
 			@endcan
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table class="table table-bordered table striped mt-1">
-						<thead class="text-white" id="table-head">
+					<table class="table table-bordered table-striped mt-1">
+						<thead class="text-white" id="table-head" style="background: #023E8A!important;"">
 							<tr>
 								
 								<th class="table-th text-white">DESCRIPCION PRODUCTO</th>								
-								<th class="table-th text-white text-center">CÓDIGO</th>
+								<th class="table-th text-white">CÓDIGO</th>
 								<!-- <th class="table-th text-white text-center">CATEGORÍA</th> -->
 								<th class="table-th text-white text-center">ESTANTE</th>
 								<th class="table-th text-white text-center">NIVEL</th>
@@ -43,7 +44,8 @@
 								<th class="table-th text-white text-center">INV.MIN</th>
 								<!-- <th class="table-th text-white text-center">Quien registro</th> -->
 								<th class="table-th text-white text-center">IMAGEN</th>	
-								<th class="table-th text-white text-center">COMPRA</th>
+								<th class="table-th text-white text-center">ACCIONES</th>
+								<th class="table-th text-white text-center"></th>
 								
 							</tr>
 						</thead>
@@ -52,44 +54,46 @@
 							<tr>
 								
 								<td><h6 class="text-left">{{$product->name}}</h6></td>								
-								<td><h6 class="text-center">{{$product->barcode}}</h6></td>
+								<td class="text-center">
+									{!! DNS2D::getBarcodeHTML($product->nircode, "QRCODE",2,2) !!}
+								</td>
 								<!-- <td><h6 class="text-center">{{$product->category}}</h6></td> -->
-								<td><h6 class="text-center">{{$product->shelf}}</h6></td>
-								<td><h6 class="text-center">{{$product->level}}</h6></td>
+								<td><h6 class="text-center badge-success">{{$product->shelf}}</h6></td>
+								<td><h6 class="text-center badge-warning">{{$product->level}}</h6></td>
 								<td><h6 class="text-center">{{$product->price}}</h6></td>
 								<td>
-									<h6 class="text-center {{$product->stock <= $product->alert ? 'text-danger' : '' }} ">
+									<h6 class="text-center {{$product->stock <= $product->alert ? 'badge-danger' : '' }} ">
 										{{$product->stock}}
 									</h6>
 								</td>
-								<td><h6 class="text-center">{{$product->alert}}</h6></td>
+								<td><h6 class="text-center badge-danger">{{$product->alert}}</h6></td>
 								<!-- <td><h6 class="text-center">{{$product->user}}</h6></td> -->
 								<td class="text-center">
 									<span>
 										<img src="{{ asset('storage/products/' . $product->imagen ) }}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
 									</span>
 								</td>
-								<td>
-								<button 
+								<td class="text-center">
+									<button 
 											type="button" 
 											wire:click.prevent="ScanCode('{{$product->barcode}}')" 
-											class="btn"
+											class="btn btn-warning"
 											id="button-shopping"
-											title="Añadir carrito">
+											title="Añadir prodcuto">
 											<i class="fas fa-shopping-cart"></i>
-										</button>
+									</button>
 								</td>
 								<td class="text-center">
 									@can('producto_editar')
-									<!--
+								
 										<a 
 											href="javascript:void(0)" 
 											wire:click.prevent="Edit({{$product->id}})" 
-											class="btn mtmobile" 
+											class="btn mtmobile btn-info" 
 											id="button-edit"
 											title="Editar producto">
 											<i class="fas fa-edit"></i>
-										</a> -->
+										</a> 
 									@endcan									
 									@can('producto_eliminar')
 										@if($product->ventas->count() < 1) 
@@ -121,11 +125,9 @@
 
 	</div>
 
-	@if ($selected_id < 1)
+
 		 @include('livewire.products.form')
-    @else
-        @include('livewire.products.data.form')
-    @endif
+    
 </div>
 
 

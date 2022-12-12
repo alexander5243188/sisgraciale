@@ -20,7 +20,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="col-sm-12">
                                 <h6>Elige el tipo de reporte</h6>
                                 <div class="form-group">
@@ -29,7 +29,8 @@
                                         <option value="1">Ventas por fecha</option>        
                                     </select>
                                 </div>
-                            </div>
+                            </div>    
+                                                 
                             <div class="col-sm-12 mt-2">
                                 <h6>Fecha desde</h6>
                                 <div class="form-group">
@@ -43,12 +44,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button wire:click="$refresh" class="btn btn-block" id="button-consult">
-                                    Consultar
+                                <button wire:click="$refresh" class="btn btn-block btn-dark" id="button-consult" style="background: #023E8A!important;" >
+                                    <b>Consultar</b>
                                 </button>
 
-                                <a class="btn btn-block button-generate {{count($data) <1 ? 'disabled' : '' }}" 
-                                href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Generar PDF</a>
+                                <a class="btn btn-warning btn-block button-generate {{count($data) <1 ? 'disabled' : '' }}" 
+                                href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank"><b>Generar PDF</b></a>
                                 
                                 <!--
                                 <a  class="btn btn-block button-export {{count($data) <1 ? 'disabled' : '' }}" 
@@ -61,9 +62,10 @@
                         <!--TABLAE-->
                         <div class="table-responsive">
                             <table class="table table-bordered table striped mt-1">
-                                <thead class="text-white" id="table-head">
+                                <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                                     <tr>
                                         <th class="table-th text-white text-center">FOLIO</th>
+                                        <th class="table-th text-white text-center">PRODUCTO</th>
                                         <th class="table-th text-white text-center">TOTAL PAGAGO</th>
                                         <th class="table-th text-white text-center">PRODUCTOS VENDIDOS</th>
                                         <th class="table-th text-white text-center">ESTADO DE VENTA</th>
@@ -79,9 +81,10 @@
                                     @foreach($data as $d)
                                     <tr>
                                         <td class="text-center"><h6>{{$d->id}}</h6></td>                               
+                                        <td class="text-center"><h6>{{$d->producto}}</h6></td>  
                                         <td class="text-center"><h6>Bs{{number_format($d->total,2)}}</h6></td>
                                         <td class="text-center"><h6>{{$d->items}}</h6></td>                                   
-                                        <td class="text-center"><h6>{{$d->status}}</h6></td>
+                                        <td class="text-center"><h6>{{strtolower($d->status)}}</h6></td>
                                         <td class="text-center"><h6>{{$d->user}}</h6></td>   
                                         <td class="text-center">
                                             <h6>
@@ -89,10 +92,12 @@
                                             </h6>
                                         </td>    
                                         <td class="text-center" >
-                                            <button wire:click.prevent="getDetails({{$d->id}})"
-                                                class="btn btn-sm"
+                                            <button 
+                                                style="background: #0054DC!important;" 
+                                                wire:click.prevent="getDetails({{$d->id}})"
+                                                class="btn btn-sm "
                                                 id="button-list">
-                                                <i class="fas fa-list"></i>
+                                                <i class="fas fa-list" style='color:white'></i>
                                             </button>
                                             <!--
                                             <button type="button" onclick="rePrint({{$d->id}})"

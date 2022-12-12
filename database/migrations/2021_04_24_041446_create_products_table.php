@@ -15,8 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('name', 355);
             $table->string('barcode', 250)->nullable();
+            $table->string('nircode', 250)->nullable();
             $table->decimal('cost', 10,2)->default(0);
             $table->decimal('price', 10,2)->default(0);
             $table->string('stock');
@@ -27,7 +28,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('countrie_id')->constrained();
             $table->foreignId('category_id')->constrained();
             //$table->foreignId('companie_id')->constrained();
-            $table->foreignId('wholesaler_id')->constrained();
+            //$table->foreignId('wholesaler_id')->constrained();
             $table->foreignId('proveedor_id')->constrained();
             //$table->foreignId('iva_id')->constrained();
             //

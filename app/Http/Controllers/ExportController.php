@@ -34,12 +34,14 @@ class ExportController extends Controller
         $data = Sale::join('users as u','u.id','sales.user_id')
         ->select('sales.*','u.name as user')
         ->whereBetween('sales.created_at', [$from, $to])
+        ->orderBy('id','asc')
         ->get();
     } else {
         $data = Sale::join('users as u','u.id','sales.user_id')
         ->select('sales.*','u.name as user')
         ->whereBetween('sales.created_at', [$from, $to])
         ->where('user_id', $userId)
+        ->orderBy('id','asc')
         ->get();
     }
 

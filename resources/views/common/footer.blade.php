@@ -2,21 +2,23 @@
       <div class="modal-footer  ">
         
         <button 
+        style="background: #023E8A!important;"
           type="button" 
           wire:click.prevent="resetUI()" 
           id="button-close" 
-          class="btn close-btn btn-sm" 
+          class="btn btn-dark close-btn btn-sm" 
           data-dismiss="modal">
-          CERRAR
+          <b>CERRAR</b>
         </button>
 
         
         <button 
+          style="background: #023E8A!important;"
           type="button" 
           wire:click.prevent="Store()" 
-          class="btn close-modal" 
+          class="btn btn-dark close-modal" 
           id="button-save">          
-          GUARDAR
+          <b>GUARDAR</b>
         </button>
        
 

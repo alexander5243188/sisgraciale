@@ -11,7 +11,7 @@
 
         <div class="table-responsive">
           <table class="table table-bordered table striped mt-1">
-            <thead class="text-white" id="table-head">
+            <thead class="text-white" id="table-head" style="background: #3B3F5C;">
               <tr>
                 <th class="table-th text-white text-center">FOLIO</th>
                 <th class="table-th text-white text-center">PRODUCTO</th>

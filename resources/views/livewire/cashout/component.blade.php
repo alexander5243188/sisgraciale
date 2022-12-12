@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
                         <div class="form-group">
-                            <label>Usuario</label>
+                            <label><h6><b>Usuario</b></h6></label>
                             <select wire:model="userid" class="form-control">
                                 <option value="0" disabled>Elegir</option>
                                 @foreach($users as $u)
@@ -22,7 +22,7 @@
 
                     <div class="col-sm-12 col-md-3">
                         <div class="form-group">
-                            <label>Fecha inicial</label>
+                            <label> <h6><b>Fecha inicial</b></h6></label>
                             <input type="date" wire:model.lazy="fromDate" class="form-control">
                             @error('fromDate') <span class="text-danger">{{$message}}</span>@enderror
                         </div>
@@ -30,7 +30,7 @@
 
                     <div class="col-sm-12 col-md-3">
                         <div class="form-group">
-                            <label>Fecha final</label>
+                            <label><h6><b>Fecha final</b></h6></label>
                             <input type="date" wire:model.lazy="toDate" class="form-control">
                             @error('toDate') <span class="text-danger">{{$message}}</span>@enderror
                         </div>
@@ -39,9 +39,10 @@
                     <div class="col-sm-12 col-md-3 align-self-center d-flex justify-content-around">
                         @if($userid >0 && $fromDate !=null && $toDate !=null)
                         <button 
+                            style="background: #023E8A!important;" 
                             wire:click.prevent="Consultar" 
                             type="button" 
-                            class="btn" 
+                            class="btn btn-dark" 
                             id="button-consulst">
                             Consultar
                         </button>
@@ -57,7 +58,7 @@
 
             <div class="row mt-5">
                 <div class="col-sm-12 col-md-4 mbmobile">
-                    <div class="connect-sorting" id="sale-total">
+                    <div class="connect-sorting bg-dark" id="sale-total" style="background: #023E8A!important;" >
                         <h5 class="text-white">Ventas Totales: Bs{{number_format($total,2)}}</h5>
                         <h5 class="text-white">Artículos: {{$items}}</h5>
                     </div>
@@ -65,7 +66,7 @@
                 <div class="col-sm-12 col-md-8">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped mt-1">
-                            <thead class="text-white" id="table-head">
+                            <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                                 <tr>
                                     <th class="table-th text-center text-white">FOLIO</th>
                                     <th class="table-th text-center text-white">TOTAL</th>
@@ -88,7 +89,7 @@
                                     <td class="text-center">
                                         <button 
                                             wire:click.prevent="viewDetails({{$row}})" 
-                                            class="btn btn-sm"
+                                            class="btn btn-sm btn-dark"
                                             id="button-plus">
                                             <i class="fas fa-list"></i>
                                         </button>

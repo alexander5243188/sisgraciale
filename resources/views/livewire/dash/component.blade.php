@@ -4,90 +4,94 @@
                 <div class="container-fluid">
                     <div class="dropdown">
                         <!-------------------------------------------ALMACEN -->
-                        <button class="btn dropdown-toggle button-inventario" type="button" id="inventario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
-                            ALMACEN
+                        @can('boton_almacen_menu')
+                        <button style="background: #023E8A!important;" class="btn dropdown-toggle button-inventario btn-dark" type="button" id="inventario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                            PRODUCTOS
                         </button>
+                        @endcan 
                         <ul class="dropdown-menu" aria-labelledby="inventario_Menu">
-                        @can('categoria_pagina')
+                        @can('categoria_pagina_menu')
                             <li>
-                                <a href="{{url('categories')}}" class="dropdown-item" data-active="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                    <span>Categorias</span>
+                                <a href="{{url('categories')}}" class="dropdown-item" data-active="true"> 
+                                                               
+                                    <h6><i class="fas fa-bookmark"></i> Categorias</h6>
                                 </a>
                             </li>
-                        @endcan
-                        @can('producto_pagina')
+                        @endcan                        
+                        @can('marca_pagina_menu')
+                            <li>                                      
+                                <a href="{{url('brands')}}"  class="dropdown-item" >                                   
+                                    <h6><i class="fas fa-bookmark"></i> Marcas</h6>
+                                </a>
+                            </li>
+                        @endcan    
+                        @can('producto_pagina_menu')
                             <li>
-                                <a href="{{ url('products') }}" class="dropdown-item" data-active="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                                    <span>Artículos</span>
+                                <a href="{{ url('products') }}" class="dropdown-item" data-active="false">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Productos</h6>
                                 </a>            
                             </li>
-                        @endcan
-                        @can('marca_pagina')
-                            <li>                                      
-                                <a href="{{url('brands')}}"  class="dropdown-item" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                                    <span>Marca</span>
-                                </a>
-                            </li>
-                        @endcan                          
+                        @endcan                      
                         </ul>
+                        
                     </div>
                     <!-------------------------------------------COMPRAS -->                    
                     <div class="dropdown">
-                        <button class="btn  dropdown-toggle button-compras" type="button" id="compras_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                        @can('boton_compras_menu')
+                        <button style="background: #023E8A!important;" class="btn  dropdown-toggle button-compras btn-dark" type="button" id="compras_Menu" data-bs-toggle="dropdown" aria-expanded="false">
                             COMPRAS
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="compras_Menu">  
+                        @endcan 
+                        <ul class="dropdown-menu" aria-labelledby="compras_Menu">                            
+                            @can('proveedor_pagina_menu')  
                             <li>
-                                <a href=""  class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>                
-                                    <span>Ingresos</span>
-                                </a>                               
-                            </li>
-                            @can('roles_pagina')  
-                            <li>
-                                <a href="{{url('wholesalers')}}"  class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>                
-                                    <span>Proveedores</span>
+                                <a href="{{url('proveedor')}}"  class="dropdown-item">                                
+                                    <h6><i class="fas fa-bookmark"></i> Proveedores</h6>
                                 </a>                               
                             </li>
                         @endcan
                         </ul>                        
                     </div>
                     <!-------------------------------------------VENTAS -->
-                    <div class="dropdown">                        
-                        <button class="btn dropdown-toggle button-compras" type="button" id="compras_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown">
+                        @can('boton_ventas_menu')                        
+                        <button style="background: #023E8A!important;" class="btn dropdown-toggle button-compras btn-dark" type="button" id="compras_Menu" data-bs-toggle="dropdown" aria-expanded="false">
                             VENTAS
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="_Menu">                        
+                        @endcan 
+                        <ul class="dropdown-menu" aria-labelledby="_Menu"> 
+                            @can('cliente_pagina_menu')                       
                             <li>
-                                <a href="" class="dropdown-item" data-active="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                    <span>Ventas</span>
-                                </a>
-                            </li>                                                  
-                            <li>
-                                <a href="" class="dropdown-item" data-active="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                    <span>Cliente</span>
+                                <a href="{{url('client')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Cliente</h6>
                                 </a>
                             </li>
+                            @endcan
+                            
+                            @can('arqueo_pagina_menu')
+                            <li>
+                                <a href="{{url('cashout')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Arqueo</h6>
+                                </a>
+                            </li>
+                            @endcan
                         </ul>
                     </div>
                     <!-------------------------------------------ACCESO -->
                     <div class="dropdown">
-                        <button class="btn  dropdown-toggle button-usuario" type="button" id="usuario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                        @can('boton_acceso_menu')
+                        <button style="background: #023E8A!important;" class="btn  dropdown-toggle button-usuario btn-dark" type="button" id="usuario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
                             ACCESO
                         </button>
+                        @endcan 
                         <ul class="dropdown-menu" aria-labelledby="usuario_Menu">
+                            @can('usuarios_pagina_menu')
                             <li>
-                                <a href="{{ url('users') }}" class="dropdown-item" data-active="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                    <span>Usuarios</span>
+                                <a href="{{ url('users') }}" class="dropdown-item" data-active="false">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Usuarios</h6>
                                 </a>
                             </li>
+                            @endcan 
                             <!--
                             <li>
                                 <a href="{{ url('permisos') }}" class="dropdown-item" data-active="false">
@@ -95,12 +99,13 @@
                                     <span>Lista de Permisos</span>
                                 </a>  
                             </li> -->
+                            @can('permisos_pagina_menu')
                             <li>
-                                <a href="{{ url('asignar') }}" class="dropdown-item text-danger" data-active="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                    <span>Asignar permisos</span>
+                                <a href="{{ url('asignar') }}" class="dropdown-item text-danger" data-active="false">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Asignar permisos</h6>
                                 </a>            
                             </li>
+                            @endcan 
                             <!--
                             <li>
                                 <a href="{{ url('roles') }}" class="dropdown-item" data-active="false">
@@ -113,22 +118,26 @@
                     </div>
                     <!-------------------------------------------REPORTES -->
                     <div class="dropdown">
-                        <button class="btn  dropdown-toggle button-reportes" type="button" id="reportes_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                        @can('boton_reporte_menu')
+                        <button style="background: #023E8A!important;" class="btn  dropdown-toggle button-reportes btn-dark" type="button" id="reportes_Menu" data-bs-toggle="dropdown" aria-expanded="false">
                             Reportes
                         </button>
+                        @endcan 
                         <ul class="dropdown-menu" aria-labelledby="reportes_Menu">
+                            @can('reporte_almacen_pagina_menu')
                             <li>                                
-                                <a href="#"  class="dropdown-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                                    <span>Reporte ingresos</span>
+                                <a href="reportalmacen"  class="dropdown-item">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Reporte almacen</h6>
                                 </a>            
                             </li>
+                            @endcan
+                            @can('reporte_ventas_pagina_menu')
                             <li>                                
-                                <a href="#"  class="dropdown-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                                    <span>Reporte ventas</span>
+                                <a href="reports"  class="dropdown-item">                                    
+                                    <h6> <i class="fas fa-bookmark"></i> Reporte ventas</h6>
                                 </a>            
                             </li>
+                            @endcan
                             
                             <!--
                             <li>
@@ -178,18 +187,137 @@
                         </ul>
                     </div>
                     <!-------------------------------------------AYUDA -->
-                    <div class="dropdown">                        
-                        <button class="btn dropdown-toggle button-inventario" type="button" id="inventario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
-                            AYUDA
+                    <div class="dropdown"> 
+                        @can('boton_herramienta_menu')                       
+                        <button style="background: #023E8A!important;" class="btn dropdown-toggle button-inventario btn-dark" type="button" id="inventario_Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                            HERRAMIENTAS
                         </button>
+                        @endcan                         
                         <ul class="dropdown-menu" aria-labelledby="inventario_Menu">                        
+                            @can('pagina_ayuda_menu')
                             <li>
-                                <a href="#" class="dropdown-item" data-active="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                    <span>Categorias</span>
+                                <a href="#" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Ayuda</h6>
+                                </a>
+                            </li>
+                            @endcan                                      
+                      
+                        <!-------------------------------------------------------------------------->
+                            @can('alerta_pagina_menu')            
+                            <li>
+                                <a href="{{url('alert')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Alertas</h6>
+                                </a>
+                            </li>
+                            @endcan                                    
+                        
+                        <!-------------------------------------------------------------------------->
+                            @can('graciale')        
+                            <li>
+                                <a href="{{url('asignar')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Asignar</h6>
                                 </a>
                             </li>                                                  
+                            @endcan
+                        <!-------------------------------------------------------------------------->
+                               @can('graciale')           
+                            <li>
+                                <a href="{{url('client')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Cliente</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!-------------------------------------------------------------------------->
+                        @can('denominaciones_pagina_menu')       
+                            <li>
+                                <a href="{{url('coins')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Denominaciones</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!-------------------------------------------------------------------------->
+                        @can('graciale')            
+                            <li>
+                                <a href="{{url('department')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Departamentos</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                        @can('graciale') 
+                            <li>
+                                <a href="{{url('iva')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Iva</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                            @can('graciale')      
+                            <li>
+                                <a href="{{url('permisos')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Permisos</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                        @can('graciale')
+                            <li>
+                                <a href="{{url('roles')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Roles</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                        @can('graciale')
+                            <li>
+                                <a href="{{url('status')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Estados</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                        @can('graciale')      
+                            <li>
+                                <a href="{{url('type')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Tipos</h6>
+                                </a>
+                            </li>                                                  
+                            @endcan
+                        <!------------------------------------------------------------------------->
+                        @can('graciale')
+                            <li>
+                                <a href="{{url('wholesalers')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Mayoristas</h6>
+                                </a>
+                            </li>
+                            @endcan
+                            <!------------------------------------------------------------------------->
+                            @can('graciale')
+                            <li>
+                                <a href="{{url('barcode')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Barcode</h6>
+                                </a>
+                            </li>  
+                            @endcan
+                            <!------------------------------------------------------------------------->
+                            @can('graciale')     
+                            <li>
+                                <a href="{{url('ingreso')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> Ingreso</h6>
+                                </a>
+                            </li> 
+                            @endcan
+                            <!------------------------------------------------------------------------->
+                            @can('pais_pagina_menu')
+                            <li>
+                                <a href="{{url('country')}}" class="dropdown-item" data-active="true">                                    
+                                    <h6><i class="fas fa-bookmark"></i> País</h6>
+                                </a>
+                            </li> 
+                            @endcan
                         </ul>
+                        <!------------------------------------------------------------------------->
+
                     </div>              
                 </div> 
                 @include('livewire.dash.scriptmenu')

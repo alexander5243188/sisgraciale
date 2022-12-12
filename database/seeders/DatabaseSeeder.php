@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(ClientSeeder::class);        
         //$this->call(EstadoVentaSeeder::class);
         
-        $this->call(VaucherSeeder::class);
+        //$this->call(VaucherSeeder::class);
         $this->call(LevelSeeder::class);
         $this->call(ShelfSeeder::class);
         $this->call(StatusSeeder::class);
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(DenominationSeeder::class);
 
-        $this->call(WholesalerSeeder::class);
+        //$this->call(WholesalerSeeder::class);
 
         $this->call(ProveedorSeeder::class);
 

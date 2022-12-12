@@ -1,40 +1,98 @@
-@foreach($data as $product)
-							<tr>
-								<td>
-									<h6 class="text-left">{{$product->name}}</h6>
-								</td>								
-								<td>
-									<h6 class="text-center">{{$product->barcode}}</h6>
-								</td>
-								<!-- <td><h6 class="text-center">{{$product->category}}</h6></td> -->
-								<td>
-									<h6 class="text-center">{{$product->shelf}}</h6>
-								</td>
-								<td>
-									<h6 class="text-center">{{$product->level}}</h6>
-								</td>
-								<td>
-									<h6 class="text-center">{{$product->price}}</h6>
-								</td>
 
 
-								<td>
-									<h6 class="text-center {{$product->stock <= $product->alert ? 'text-danger' : '' }} ">
-										{{$product->stock}}
-									</h6>
-								</td>
 
 
-								<td>
-									<h6 class="text-center">{{$product->alert}}</h6>
-								</td>
 
-								<td class="text-center">
-									<span>
-										<img src="{{ asset('storage/products/' . $product->imagen ) }}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
-									</span>
-								</td>
 
-							
-							</tr>
-							@endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+H1>Dynamsoft PHP Barcode Reader</H1>
+<form action="dbr.php" method="post" enctype="multipart/form-data">
+    Select barcode image:
+    <input type="file" name="readBarcode" id="readBarcode" accept="image/*"><br>
+    <input type="submit" value="Read Barcode" name="submit">
+</form>
+<div id="tiff"></div>
+<div id='image'></div>
+<script>
+      function reset() {
+        $("#image").empty();
+        $("#tiff").empty();
+      }
+			var input = document.querySelector('input[type=file]');
+			input.onchange = function() {
+        reset();
+				var file = input.files[0];
+				var fileReader = new FileReader();
+        // get file extension
+        var extension = file.name.split('.').pop().toLowerCase();
+        var isTiff = false;
+        if (extension == "tif" || extension == "tiff") {
+          isTiff = true;
+        }
+				fileReader.onload = function(e) {
+          if (isTiff) {
+            console.debug("Parsing TIFF image...");
+            //initialize with 100MB for large files
+            Tiff.initialize({
+              TOTAL_MEMORY: 100000000
+            });
+            var tiff = new Tiff({
+              buffer: e.target.result
+            });
+            var tiffCanvas = tiff.toCanvas();
+            $(tiffCanvas).css({
+              "max-width": "800px",
+              "width": "100%",
+              "height": "auto",
+              "display": "block",
+              "padding-top": "10px"
+            }).addClass("TiffPreview");
+            $("#tiff").append(tiffCanvas);
+          }
+          else {
+            var dataURL = e.target.result, img = new Image();
+            img.src = dataURL;
+            $("#image").append(img);
+          }
+				}
+        if (isTiff) {
+            fileReader.readAsArrayBuffer(file);
+        }
+        else
+				    fileReader.readAsDataURL(file);
+			}
+</script>

@@ -1,7 +1,7 @@
 <div wire:ignore.self id="modal-details" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<div class="modal-header" id="table-head">
+			<div class="modal-header bg-dark" id="table-head" style="background: #023E8A!important;" >
 				<h5 class="modal-title text-white">
 					<b>Detalle de Ventas</b>
 				</h5>
@@ -13,7 +13,7 @@
 			<div class="modal-body">
 				<div class="table-responsive">
                         <table class="table table-bordered table-striped mt-1">
-                            <thead class="text-white" id="table-head">
+                            <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                                 <tr>
                                     <th class="table-th text-center text-white">PRODUCTO</th>
                                     <th class="table-th text-center text-white">CANT</th>

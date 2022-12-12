@@ -25,8 +25,7 @@ class CategoriesController extends Component
 		$search, 
 		$image, 
 		$selected_id, 
-		$pageTitle, 
-		$componentNames, 
+		$pageTitle, 		
 		$componentName, 
 		$userid;
 		//$countryid;
@@ -35,9 +34,8 @@ class CategoriesController extends Component
 	
 	public function mount()
 	{
-		$this->pageTitle = '';
-		$this->componentNames = 'Categorías';
-		$this->componentName = 'una categoria';		
+		$this->pageTitle = 'Listado';		
+		$this->componentName = 'Categoria';		
 	}
 
 	public function paginationView()
@@ -83,7 +81,7 @@ class CategoriesController extends Component
 		$record = Category::find($id, ['id','name','image']);
 		$this->name = $record->name;
 		$this->selected_id = $record->id;
-		$this->image = $record->image;
+		//$this->image = $record->image;
 
 		$this->emit('show-modal', 'show modal!');
 	}

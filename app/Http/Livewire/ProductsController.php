@@ -22,6 +22,7 @@ use App\Models\Proveedor;
 use App\Models\User;
 use App\Models\Almacen;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class ProductsController extends Scaner //Component
 {
@@ -42,12 +43,11 @@ class ProductsController extends Scaner //Component
 		$image,
 		$selected_id,
 		$pageTitle,
-		$componentName,
-		$componentNames,
+		$componentName,		
 		$brandid,
 		$countryid,
         $ivaid,
-		$wholesalerid,
+		//$wholesalerid,
 		$proveedorid,
 		$alertid,
 		$alejandra, $graciela,
@@ -70,20 +70,20 @@ class ProductsController extends Scaner //Component
 	}
 
 
+
 	public function mount()
 	{
 		$this->pageTitle = 'Listado';
-		$this->componentName = 'un producto';
-		$this->componentNames = 'Productos';
+		$this->componentName = 'Producto';		
 		$this->categoryid = 'Elegir';
 		$this->brandid = 'Elegir';
         //$this->ivaid = 'Elegir';
 		//$this->ivaid = 'Elegir';
 		//$this->wholesalerid = 'Elegir';
-		$this->alertid = 'Elegir';
-		$this->alertid = 'Elegir';
+		$this->alertid = 1;
+		
 		$this->countryid = 'Elegir';
-		$this->wholesalerid = 'Elegir';
+		//$this->wholesalerid = 'Elegir';
 		$this->proveedorid = 'Elegir';
 		$this->shelfid = 'Elegir';
 		$this->levelid = 'Elegir';
@@ -102,7 +102,7 @@ class ProductsController extends Scaner //Component
 		->join('users as use','use.id', 'products.user_id')
 		->join('categories as c','c.id','products.category_id')
 		//->join('companies as co', 'co.id','products.companie_id',)
-		->join('wholesalers as w', 'w.id','products.wholesaler_id',)
+		//->join('wholesalers as w', 'w.id','products.wholesaler_id',)
 		->join('proveedors as p', 'p.id','products.proveedor_id',)
 		//->join('ivas as i','i.id','products.iva_id')
 		->join('alerts as a','a.id','products.alert_id')
@@ -115,7 +115,7 @@ class ProductsController extends Scaner //Component
 			'use.name as user',
 			'c.name as category', 
 			//'co.name as companie',
-			'w.name as wholesaler',
+			//'w.name as wholesaler',
 			'p.name as proveedor',
 			//'i.tax as iva',
 			'a.name as alert',
@@ -126,6 +126,7 @@ class ProductsController extends Scaner //Component
 		->where('products.name', 'like', '%' . $this->search .'%')
 		->orWhere('products.barcode', 'like', '%' .$this->search . '%')
 		->orWhere('c.name', 'like', '%' . $this->search . '%')
+		->orWhere('products.nircode', 'like', '%' . $this->search . '%')
 		->orderBy('products.name', 'asc')
 		->paginate($this->pagination);
 	else
@@ -134,7 +135,7 @@ class ProductsController extends Scaner //Component
 		->join('categories as c','c.id','products.category_id')
 		->join('users as use','use.id', 'products.user_id')
 		//->join('companies as co', 'co.id','products.companie_id',)
-		->join('wholesalers as w', 'w.id', 'products.wholesaler_id')
+		//->join('wholesalers as w', 'w.id', 'products.wholesaler_id')
 		->join('proveedors as p', 'p.id', 'products.proveedor_id')
 		//->join('ivas as i','i.id','products.iva_id')
 		->join('alerts as a','a.id','products.alert_id')
@@ -148,7 +149,7 @@ class ProductsController extends Scaner //Component
 			'c.name as category', 
 			'a.name as alert',
 			//'co.name as companie',
-			'w.name as wholesaler',
+			//'w.name as wholesaler',
 			'p.name as proveedor',
 			//'i.tax as iva',
 			'co.name as country',
@@ -163,7 +164,7 @@ class ProductsController extends Scaner //Component
 			'brands' => Brand::orderBy('name', 'asc')->get(),
             'categories' => Category::orderBy('name', 'asc')->get(),
             //'companies' => Companie::orderBy('name', 'asc')->get(),
-			'wholesalers' => Wholesaler::orderBy('name', 'asc')->get(),
+			//'wholesalers' => Wholesaler::orderBy('name', 'asc')->get(),
 			'proveedors' => Proveedor::orderBy('name', 'asc')->get(),
             //'ivas' => Iva::orderBy('tax', 'asc')->get(),
 			'alerts' => Alert::orderBy('name', 'asc')->get(),
@@ -177,19 +178,19 @@ class ProductsController extends Scaner //Component
 
 
 	public function Store()
-	{
+	{		
 		$rules = [
             'name' => 'required|unique:products|min:3',
-			'barcode' => 'required',
+			//'barcode' => 'required',
             'cost' => 'required',
             'price' => 'required',
             'stock' => 'required',
-            'alertid' => 'required|not_in:Elegir',
+            //'alertid' => 'required|not_in:Elegir',
             'brandid' => 'required|not_in:Elegir',            
             'categoryid' => 'required|not_in:Elegir',          
             //'ivaid' => 'required|not_in:Elegir',
 			'countryid' => 'required|not_in:Elegir',
-			'wholesalerid' => 'required|not_in:Elegir',
+			//'wholesalerid' => 'required|not_in:Elegir',
 			'proveedorid' => 'required|not_in:Elegir',
 			'shelfid' => 'required|not_in:Elegir',
 			'levelid' => 'required|not_in:Elegir',
@@ -199,16 +200,16 @@ class ProductsController extends Scaner //Component
             'name.required' => 'El nombre del producto es requerido',
             'name.unique'=> 'El nombre del producto ya esta registrado',
             'name.min' => 'El nombre del producto debe tener por lo menos 3 digitos',
-			'barcode.required' => 'Ingrese el codigo del producto',
+			//'barcode.required' => 'Ingrese el codigo del producto',
             'cost.required' => 'EL costo es requerido',
             'price.required' => 'El precio es requerido',
             'stock.required' => 'El stock es requerido',
-            'alertid.required' => 'El valor de inventario es requerido',
+            //'alertid.required' => 'El valor de inventario es requerido',
             'brandid.not_in' => 'La marca es requerida',
             'categoryid_not_in' => 'La categoria es requerida',       
             //'ivaid.not_in' => 'EL iva es requerido',
 			'countryid.not_in' => 'El pais es requerido',
-			'wholesalerid.not_in' => 'El mayorista es requerido',
+			//'wholesalerid.not_in' => 'El mayorista es requerido',
 			'proveedorid.not_in' => 'El proveedor es requerido',
 			'shelfid.not_in' => 'El estante es requerido',
 			'levelid.not_in' => 'El nivel es requerido',
@@ -233,10 +234,15 @@ class ProductsController extends Scaner //Component
 
 		//$alejandraamor = Auth()->user()->id;
 		//dd($alejandraamor);
+		//$valor = Str::limit($this->name,3,'');			
+		
+		$valor = $this->id."".$this->name."".$this->shelfid;
+        $nirc = Str::finish( 'pro-',$valor);		
 
 		$product = Product::create([
 			'name' =>$this->name,
-			'barcode' =>$this->barcode,
+			'barcode' =>$nirc,
+			'nircode' => $nirc,
             'cost' =>$this->cost,           
             //'price' =>$this->price+ ($this->price*0.13),
 			//'price' =>$this->price+ ($this->price * ($gracielaAlejandra/100)),			
@@ -247,19 +253,21 @@ class ProductsController extends Scaner //Component
             'brand_id' =>$this->brandid,                   
             //'iva_id' =>$this->ivaid,
 			'countrie_id' =>$this->countryid,
-			'wholesaler_id' => $this->wholesalerid,
+			//'wholesaler_id' => $this->wholesalerid,
 			'proveedor_id' => $this->proveedorid,
 			'shelf_id' => $this->shelfid,
 			'level_id' => $this->levelid,
 			//'user_id' => $this->alejandramor
 			'user_id' => Auth()->user()->id,
-			//'type' => $this->type,
-			
+			//'type' => $this->type,			
 		]);
 		// ---------------------------------------------registrar dato en almacen	
 		$idregistro = $product->id;
+		$idregistroproveedor = $product->proveedor_id;
+		
 		//dd($alejandra);
 		$idProducto = Product::find($idregistro);
+		$idProveedor = Product::find($idregistroproveedor);		
 		//dd($idProducto);
 
 		//dd($product->id);
@@ -267,6 +275,7 @@ class ProductsController extends Scaner //Component
 			//'fecha'=> $this->fechaAlmacen,
 			'fecha'=> Carbon::now(),
 			'product_id' => $idregistro,
+			'proveedor_id' => $idregistroproveedor,
 			'stock' => $this->stock,
 			'stockI' => $this->stock,
 			'ingreso' => $this->tipoIngreso
@@ -293,21 +302,22 @@ class ProductsController extends Scaner //Component
 		//dd($product);
 		$this->selected_id = $product->id;
 		$this->name = $product->name;
-		$this->barcode = $product->barcode;
+		//$this->barcode = $product->nircode;		
+		
 		$this->cost = $product->cost;
 		$this->price = $product->price;
 		$this->stock = $product->stock;
-		$this->alertid = $product->alert_id;
+		//$this->alertid = $product->alert_id;
 		$this->categoryid = $product->category_id;
 		//$this->ivaid = $product->iva_id;
 		$this->countryid = $product->countrie_id;
 		$this->brandid = $product->brand_id;
-		$this->wholesalerid = $product->wholesaler_id;
+		//$this->wholesalerid = $product->wholesaler_id;
 		$this->proveedorid = $product->proveedor_id;
 		$this->shelfid = $product->shelf_id;
 		$this->levelid = $product->level_id;
-		$this->userid = $product->user_id;
-		$this->image = $product->image;
+		//$this->userid = $product->user_id;
+		//$this->image = $product->image;
 		//$this->type = $product->type;
 		//$this->seriecomprobante = $product->serie_comprobante;
 		//dd($product->image);
@@ -322,11 +332,11 @@ class ProductsController extends Scaner //Component
             'cost' => 'required',
             'price' => 'required',
             'stock' => 'required',
-            'alertid' => 'required|not_in:Elegir',
+            //'alertid' => 'required|not_in:Elegir',
             'brandid' => 'required|not_in:Elegir',            
             'categoryid' => 'required|not_in:Elegir',          
             //'ivaid' => 'required|not_in:Elegir',
-			'wholesalerid' => 'required|not_in:Elegir',
+			//'wholesalerid' => 'required|not_in:Elegir',
 			'proveedorid' => 'required|not_in:Elegir',
 			'shelfid' => 'required|not_in:Elegir',
 			'levelid' => 'required|not_in:Elegir',
@@ -339,11 +349,11 @@ class ProductsController extends Scaner //Component
             'cost.required' => 'EL costo es requerido',
             'price.required' => 'El precio es requerido',
             'stock.required' => 'El stock es requerido',
-            'alertid.required' => 'El valor minimo de inventario es requerido',
+            //'alertid.required' => 'El valor minimo de inventario es requerido',
             'brandid.not_in' => 'La marca es requerida',
             'categoryid.not_in' => 'La categoria es requerida',           
             //'ivaid.not_in' => 'EL iva es requerido',
-			'wholesalerid.not_in' => 'El mayorista es requerido',
+			//'wholesalerid.not_in' => 'El mayorista es requerido',
 			'proveedorid.not_in' => 'El proveedor es requerido',
 			'shelfid.not_in' => 'El estante es requerido',
 			'levelid.not_in' => 'El nivel es requerido',
@@ -360,16 +370,16 @@ class ProductsController extends Scaner //Component
             'barcode' =>$this->barcode,
             'price' =>$this->price,
             'stock' =>$this->stock,
-            'alert_id' =>$this->alertid,
+            //'alert_id' =>$this->alertid,
             'brand_id' =>$this->brandid,
             'category_id' =>$this->categoryid,           
             //'iva_id' =>$this->ivaid,
 			'countrie_id' =>$this->countryid,
-			'wholesaler_id' => $this->wholesalerid,
+			//'wholesaler_id' => $this->wholesalerid,
 			'proveedor_id' => $this->proveedorid,
 			'shelf_id' => $this->shelfid,
 			'level_id' => $this->levelid,
-			'user_id' => $this->userid,
+			//'user_id' => $this->userid,
 			//'type' => $this->type,
 			//'serie_comprobante' => $this->seriecomprobante,
 		]);
@@ -405,15 +415,15 @@ class ProductsController extends Scaner //Component
         $this->cost = '';
         $this->price = '';
         $this->stock = '';
-        $this->alert_id = '';
+        //$this->alert_id = '';
         $this->search = '';
         $this->selected_id = 0;
-        $this->image = null;
+        //$this->image = null;
         $this->brandid = 'Elegir';
         $this->categoryid = 'Elegir';
 		$this->countryid = 'Elegir';
         //$this->ivaid = 'Elegir';
-		$this->wholesalerid = 'Elegir';
+		//$this->wholesalerid = 'Elegir';
 		$this->proveedorid = 'Elegir';
 		$this->shelfid = 'Elegir';
 		$this->levelid = 'Elegir';
@@ -429,7 +439,7 @@ class ProductsController extends Scaner //Component
 	public function ScanCode($code)
 	{
 		$this->ScanearCode($code);
-		$this->emit('global-msg',"SE AGREGÓ EL PRODUCTO AL CARRITO");
+		$this->emit('global-msg',"SE AGREGÓ EL PRODUCTO");
 	}
 
 

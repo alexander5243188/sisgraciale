@@ -40,7 +40,7 @@
           class="btn btn-dark btn-sm"
           id="button-close" 
           data-dismiss="modal">
-          CERRAR
+          <b>CERRAR</b>
         </button>
 
         @if($selected_id < 1)
@@ -49,7 +49,7 @@
           wire:click.prevent="CreatePermission()" 
           class="btn  close-modal" 
           id="button-update">
-          GUARDAR
+          <b>GUARDAR</b>
         </button>
         @else
         <button 
@@ -57,7 +57,7 @@
           wire:click.prevent="UpdatePermission()" 
           class="btn close-modal" 
           id="button-update">
-          ACTUALIZAR
+          <b>ACTUALIZAR</b>
         </button>
         @endif
 

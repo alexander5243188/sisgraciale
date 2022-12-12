@@ -1,12 +1,11 @@
 @include('common.modalHead')
 <div class="row">	
 <div class="col-sm-12">
-	<div class="input-group">
+<label style="color: #000000;"><b>Descripción de la categoria</b></label>
+	<div class="input-group">	
 		<div class="input-group-prepend">
 			<span class="input-group-text">
-				<span class="fas fa-edit">
-					
-				</span>
+				<span class="fas fa-edit"></span>
 			</span>
 		</div>
 		<input 

@@ -8,86 +8,86 @@
 	
 	<link rel="stylesheet" href="{{ public_path('css/custom_pdf.css') }}">
 	<link rel="stylesheet" href="{{ public_path('css/custom_page.css') }}">
+<style>
+	@page {
+            margin: 2cm 2cm;
+            font-size: 1em;
+        }
 
+        body {
+            margin: 3cm 2cm 2cm;
+        }
+
+        header {			
+            position: fixed;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 250px;
+  			width: 100%;           	
+            text-align: center;
+            line-height: 25px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 2cm;
+            text-align: center;
+            line-height: 35px;		
+        }
+		.columna {
+			width:33%;
+			float:left;
+		}
+		
+</style>
 </head>
 <body>
-	
-	<section class="header" style="top: -287px;">
-		<table cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-				<td colspan="2" class="text-center">
-					<span style="font-size: 25px; font-weight: bold;">Comercial Fuentes</span>
-				</td>				
-			</tr>
-			<tr>
-				<td width="30%" style="vertical-align: top; padding-top: 10px; position: relative">
-					<img src="{{ asset('assets/img/livewire_logo.png') }}" alt="" class="invoice-logo">
-				</td>
-
-				<td width="70%" class="text-left text-company" style="vertical-align: top; padding-top: 10px">
-					
-					<span style="font-size: 16px"><strong>Avenida Republica # 1647</strong></span>
-					<br>
-					<span style="font-size: 16px"><strong>Tel. 4560225</strong></span>
-					<br>
-					<span style="font-size: 16px"><strong>Cochabamba - Boliva </strong></span>					
-					<br>
-					<span style="font-size: 16px"><strong>Factura </strong></span>
-					<br>
-					<span style="font-size: 16px"><strong>NIT: </strong></span>
-					<br>
-					<span style="font-size: 16px"><strong>Factura N° </strong></span>
-					<br>
-					<span style="font-size: 16px"><strong>Autorización N° </strong></span>
-					
-					<br>					
-					<span style="font-size: 16px"><strong>Fecha de Consulta: {{ \Carbon\Carbon::now()->format('d-M-Y')}}</strong></span>					
-					<br>
-					<span style="font-size: 14px">SEÑOR(ES): {{$user}}</span>
-					<br>
-					<span style="font-size: 14px">NIT:</span>
-				</td>
-			</tr>
-		</table>
-	</section>
-
-
-	<section style="margin-top: -50px">
+	<header>
+	<div class="columna"><img src="../public/storage/comercial.png" alt="" style="max-height: 120px; max-width: 240px;"></div>
+	<div class="columna">
+		<span style="font-size: 25px; font-weight: bold;">Comercial Fuentes</span>
+		<br>
+		<span style="font-size: 16px"><strong>Reporte de ventas</strong></span>
+		<br>
+		<span style="font-size: 16px"><strong>{{ \Carbon\Carbon::now()->format('d-M-Y')}}</strong></span>
+	</div>
+	<div class="columna"> 
+		<br>
+		<br>
+		<span style="font-size: 14px"><strong>Usuario: {{$user}}</strong></span>
+	</div>
+	</header>	
 		<table cellpadding="0" cellspacing="0" class="table-items" width="100%">
 			<thead>
-				<tr>
-					<th width="10%">DESCRIPCION</th>
-					<th width="12%">CANT</th>
-					<th width="10%">PRECIO</th>
-					<th width="12%">TOTAL</th>					
+				<tr>									
+					<th colspan="1" width="">PRODUCTOS VENDIDOS</th>	
+					<th colspan="1" width="" class="text-right" >PRECIO</th>													
+					<th colspan="1" width="">FECHA</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($data as $item)
-				<tr>
-					<td align="center">{{$item->id}}</td>
-					<td align="center">{{number_format($item->total,2)}}</td>
-					<td align="center">{{$item->items}}</td>
-					<td align="center">{{$item->status}}</td>					
+				<tr>					
+					<td colspan="1" align="center">{{$item->items}}</td>						
+					<td colspan="1" align="right">{{number_format($item->total,2)}}</td>														
+					<td colspan="1" align="center">{{$item->created_at}}</td>
 				</tr>
 				@endforeach
 			</tbody>
 			<tfoot>
 				<tr>
-					<td class="text-center">
-						<span><b>TOTALES</b></span>
-					</td>
-					<td colspan="1" class="text-center">
-						<span><strong>${{ number_format($data->sum('total'),2)}}</strong></span>
-					</td>	
-					<td class="text-center">
-						{{$data->sum('items')}}
+					<td class="text-center">Total: {{$data->sum('items')}}</td>											
+					<td colspan="1" class="text-right">
+						<span><strong>Bs {{ number_format($data->sum('total'),2)}}</strong></span>
 					</td>						
-					<td colspan="3"></td>
 				</tr>
 			</tfoot>
 		</table>
-	</section>
+	
 
 
 	<section class="footer">

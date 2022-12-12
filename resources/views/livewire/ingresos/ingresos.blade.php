@@ -12,7 +12,7 @@
 
 				<div class="table-responsive">
 					<table  class="table table-bordered table-striped  mt-1">
-						<thead class="text-white" style="background: #3B3F5C">
+						<thead class="text-white" style="background: #023E8A!important;" ">
 							<tr>
 								<th class="table-th text-white">N°</th>	
 								<th class="table-th text-center text-white">Registrado por</th>
@@ -45,7 +45,7 @@
 									
 								</h6></td>                             
 								<td>
-								<a 
+								<a 	style="background: #013440!important;" 
 											href="javascript:void(0)" 
 											wire:click.prevent="Store({{$product->id}})" 
 											class="btn mtmobile" 

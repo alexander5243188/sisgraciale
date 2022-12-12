@@ -18,16 +18,14 @@ class BrandController extends Component
         $search, 
         $selected_id, 
         $pageTitle, 
-        $componentName,
-        $componentNames,
+        $componentName,     
         $userid;
     private $pagination = 5;
 
     public function mount()
     {
         $this->pageTitle = "Listado";
-        $this->componentName = "una marca";
-        $this->componentNames = "Marcas";
+        $this->componentName = "Marca";      
         //$this->country_id = 'Elegir';
     }
     public function paginationView()
@@ -100,7 +98,8 @@ class BrandController extends Component
 
 		$brand = Brand::find($this->selected_id);
 		$brand->update([
-			'name' => $this->name
+			'name' => $this->name,
+            'user_id' => Auth()->user()->id,
 		]);
         $brand->save();	        
 		$this->resetUI();
@@ -121,6 +120,7 @@ class BrandController extends Component
         $this->validate($rules, $messages);
         $brand = Brand::create([
             'name' => $this->name,
+            'user_id' => Auth()->user()->id,
             //'country_id' => $this->country_id,
         ]);
         //dd($brand);

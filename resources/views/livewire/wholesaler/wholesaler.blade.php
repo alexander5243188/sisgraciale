@@ -9,9 +9,9 @@
 				@can('mayorista_crear')
 					<ul class="tabs tab-pills">
 						<li>							
-							<a 
+							<a  style="background: #023E8A!important;" 
 								href="javascript:void(0)" 
-								class="tabmenu " 
+								class="tabmenu bg-dark" 
 								id="button-add" 
 								data-toggle="modal" 
 								data-target="#theModal"
@@ -29,7 +29,7 @@
 			<div class="widget-content">
 				<div class="table-responsive">
 					<table class="table table-bordered table striped mt-1">
-						<thead class="text-white" id="table-head">
+						<thead class="text-white" id="table-head" style="background: #023E8A!important;" >
 							<tr>
 								<th class="table-th text-white">NOMBRE</th>
                                 <th class="table-th text-white">TELEFONO</th>
@@ -63,27 +63,28 @@
 								
 								<td class="text-center">
 									@can('mayorista_editar')
-										<a 
+										<a
+											style="background: #013440!important;"  
 											href="javascript:void(0)" 
 											wire:click="Edit({{$wholesaler->id}})" 
 											id="button-edit" 
-											class="btn mtmobile" 
+											class="btn mtmobile btn-dark" 
 											title="Editar mayorista">
 											<i class="fas fa-edit"></i>
 										</a>
 									@endcan
-									@if($wholesaler->products->count() < 1 ) 
+									
 									@can('mayorista_eliminar') 
 											<a 
 												href="javascript:void(0)" 
-												id="button-delete" 
+												id="" 
 												onclick="Confirm('{{$wholesaler->id}}')" 
-												class="btn " 
+												class="btn btn-danger" 
 												title="Eliminar mayorista">
 												<i class="fas fa-trash"></i>
 											</a>
 									@endcan
-									@endif
+									
 								</td>
 							</tr>
 							@endforeach
@@ -94,11 +95,9 @@
 			</div>
 		</div>
 	</div>
-	@if ($selected_id < 1)
+	
 		@include('livewire.wholesaler.form') 
-    @else
-		@include('livewire.wholesaler.form') 
-    @endif
+   
 	   
 </div>
 

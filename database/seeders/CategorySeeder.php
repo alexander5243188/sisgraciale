@@ -19,56 +19,56 @@ class CategorySeeder extends Seeder
         	'name' => 'Brochas rodillos bandejas',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770bd003a19_.jpg'
+        	'image' => '639630ae9540f_.png'
         ]);
         Category::create([
         	'name' => 'Cerraduras',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770be04b9ed_.png'
+        	'image' => '639630bf34023_.png'
         ]);
         
         Category::create([
         	'name' => 'Herramientas',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770bebabb19_.png'
+        	'image' => '639630cd15b1c_.png'
         ]);        
         Category::create([
         	'name' => 'Lijas pliegos y discos esmeril',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770bf9e8bdd_.png'
+        	'image' => '639630dadaade_.png'
         ]);
         Category::create([
         	'name' => 'Materiales de construcción',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770c088a6ce_.jpg'
+        	'image' => '63963139309db_.jpg'
         ]);
         Category::create([
         	'name' => 'Materiales electricos',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770c2f9e06f_.jpg'
+        	'image' => '639630fa64fd3_.jpg'
         ]);
         Category::create([
         	'name' => 'Pinturas, pegamentos y accesorios',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770c47503aa_.png'
+        	'image' => '639631089fe78_.jpg'
         ]);
         Category::create([
         	'name' => 'Plomería',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770c9fd6e97_.jpg'
+        	'image' => '63963117c559c_.jpg'
         ]);
         Category::create([
         	'name' => 'Seguridad industrial',
             'user_id' => 1,
             //'country_id' => 1,
-        	'image' => '63770cb1e9d40_.jpg'
+        	'image' => '63963139309db_.jpg'
         ]);
 
     }

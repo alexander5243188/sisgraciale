@@ -11,8 +11,9 @@
                         
                         <li>
                             <a 
+                                style="background: #023E8A!important;" 
                                 href="javascript:void(0)" 
-                                class="tabmenu" 
+                                class="tabmenu bg-dark" 
                                 id="button-add"
                                 data-toggle="modal" 
                                 data-target="#theModal"
@@ -32,7 +33,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">IDENTIFICADOR</th>
                                 <th class="table-th text-white text-center">DESCRIPCIÓN</th>
@@ -46,11 +47,12 @@
                             @foreach($roles as $role)
                             <tr>
                                 <td><h6>{{$role->id}}</h6></td>
-                                <td class="text-center"><h6>{{$role->name}}</h6></td>
+                                <td class="text-center"><h6 class="badge badge-success">{{$role->name}}</h6></td>
 
                              <td class="text-center">
                                 @can('roles_actualizar')
                                     <a 
+                                        style="background: #013440!important;" 
                                         href="javascript:void(0)" 
                                         wire:click="Edit({{$role->id}})"
                                         class="btn mtmobile"
@@ -65,7 +67,7 @@
                                     <a 
                                         href="javascript:void(0)" 
                                         onclick="Confirm('{{$role->id}}')" 
-                                        class="btn" 
+                                        class="btn btn-danger" 
                                         id="button-delete"
                                         title="Eliminar rol"
                                     >

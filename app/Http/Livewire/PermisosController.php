@@ -20,8 +20,8 @@ class PermisosController extends Component
         $search, 
         $selected_id, 
         $pageTitle, 
-        $componentName,
-        $componentNames;
+        $componentName;
+     
     private $pagination = 10;
 
 
@@ -34,8 +34,8 @@ class PermisosController extends Component
     public function mount()
     {
         $this->pageTitle = 'Listado'; 
-        $this->componentName = 'un permiso'; 
-        $this->componentNames = 'Permisos'; 
+        $this->componentName = 'Permisos'; 
+     
     }
 
  public function render()

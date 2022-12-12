@@ -7,7 +7,7 @@
           id="button-close" 
           class="btn close-btn btn-sm" 
           data-dismiss="modal">
-          CERRAR
+          <b>CERRAR</b>
         </button>
 
     
@@ -16,7 +16,7 @@
           wire:click.prevent="Store()" 
           class="btn close-modal" 
           id="button-save">          
-          GUARDAR
+          <b>GUARDAR</b>
         </button>
        
 

@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-sm-12 col-md-8">
 	<div class="form-group">
-		<label >Alerta de inventario minimo</label>
+		<label style="color: #000000;">Alerta de inventario minimo</label>
 		<input 
             type="text" 
             wire:model.lazy="name" 

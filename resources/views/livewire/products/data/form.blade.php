@@ -1,7 +1,7 @@
 @include('common.modalHead')
 
 <div class="row">
-	
+	<!--------------------------------------------------------------->
 <div class="col-sm-12 col-md-8">
 	<div class="form-group">
 		<label >Nombre</label>
@@ -10,6 +10,7 @@
 		@error('name') <span class="text-danger er">{{ $message}}</span>@enderror
 	</div>
 </div>
+
 
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
@@ -21,7 +22,9 @@
 		@error('barcode') <span class="text-danger er">{{ $message}}</span>@enderror
 	</div>
 </div>
+<!--------------------------------------------------------------->
 
+<!--------------------------------------------------------------->
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
 		<label >Precio de compra</label>
@@ -50,7 +53,7 @@
 
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
-		<label >Stock</label>
+		<label >Cantidad de productos</label>
 		<input 
 			type="number"  
 			wire:model.lazy="stock" 
@@ -59,23 +62,13 @@
 		@error('stock') <span class="text-danger er">{{ $message}}</span>@enderror
 	</div>
 </div>
-<div class="col-sm-12 col-md-4">
-	<div class="form-group">
-		<label>Alertas</label>
-		<select wire:model='alertid' class="form-control">
-			<option value="Elegir" disabled>Elegir</option>
-			@foreach($alerts as $ale)
-			<option value="{{$ale->id}}" >{{$ale->name}}</option>
-			@endforeach
-		</select>
-		@error('alertid') <span class="text-danger er">{{ $message}}</span>@enderror
-	</div>
-</div>
+
+<!--------------------------------------------------------------->
 
 
 
 
-
+<!--------------------------------------------------------------->
 <div class="col-sm-12 col-md-4">
 <div class="form-group">
 	<label>Categoría</label>
@@ -105,18 +98,7 @@
         </div>
     </div>
 
-	<div class="col-sm-12 col-md-4">
-        <div class="form-group">
-            <label>Mayorista</label>
-            <select wire:model='wholesalerid' class="form-control">
-                <option value="Elegir" disabled>Elegir</option>
-                @foreach($wholesalers as $wholesaler)
-                <option value="{{$wholesaler->id}}" >{{$wholesaler->name}}</option>
-                @endforeach
-            </select>
-            @error('wholesalerid') <span class="text-danger er">{{ $message}}</span>@enderror
-        </div>
-    </div>
+
 	<div class="col-sm-12 col-md-2">
         <div class="form-group">
             <label>Estante</label>
@@ -138,35 +120,39 @@
                 <option value="{{$level->id}}" >{{$level->name}}</option>
                 @endforeach
             </select>
-            @error('level') <span class="text-danger er">{{ $message}}</span>@enderror
+            @error('levelid') <span class="text-danger er">{{ $message}}</span>@enderror
         </div>
     </div>
-	
+<!--------------------------------------------------------------->
 
+<!--------------------------------------------------------------->
 	<div class="col-sm-12 col-md-8">
-	<div class="form-group">
-		<label >Usuario</label>
-		<input type="text" wire:model.lazy="userid" 
-		class="form-control product-name" placeholder="" autofocus >
-		@error('user') <span class="text-danger er">{{ $message}}</span>@enderror
+        <div class="form-group">
+            <label>Proveedor</label>
+            <select wire:model='proveedorid' class="form-control">
+                <option value="Elegir" disabled>Elegir</option>
+                @foreach($proveedors as $proveedor)
+                <option value="{{$proveedor->id}}" >{{$proveedor->name}}</option>
+                @endforeach
+            </select>
+            @error('proveedorid') <span class="text-danger er">{{ $message}}</span>@enderror
+        </div>
+    </div>
+<!--------------------------------------------------------------->
+
+
+
+
+<!--------------------------------------------------------------->
+<div class="col-sm-12 col-md-8">
+	<div class="form-group custom-file">
+		<input type="file" class="custom-file-input form-control" wire:model="image"
+		accept="image/x-png, image/gif, image/jpeg"  
+		>
+		<label class="custom-file-label">Imágen {{$image}}</label>
+		@error('image') <span class="text-danger er">{{ $message}}</span>@enderror
 	</div>
 </div>
-
-
-
-
-
-
-<div class="col-sm-12 col-md-8">
-<div class="form-group custom-file">
-	<input type="file" class="custom-file-input form-control" wire:model="image"
-	accept="image/x-png, image/gif, image/jpeg"  
-	 >
-	 <label class="custom-file-label">Imágen {{$image}}</label>
-	 @error('image') <span class="text-danger er">{{ $message}}</span>@enderror
-</div>
-</div>
-
 <span>
                 <img 
 					src="{{asset('storage/products/' . $image)}}"
@@ -179,7 +165,7 @@
 
 
 </div>
-
+<!--------------------------------------------------------------->
 
 
 

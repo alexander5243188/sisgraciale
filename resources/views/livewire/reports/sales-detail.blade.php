@@ -1,7 +1,7 @@
 <div wire:ignore.self class="modal fade" id="modalDetails" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header" id="table-head">
+      <div class="modal-header bg-dark" id="table-head"style="background: #023E8A!important;" >
         <h5 class="modal-title text-white">
         	<b>Detalle de Venta # {{$saleId}}</b>
         </h5>
@@ -10,8 +10,8 @@
       <div class="modal-body">
 
         <div class="table-responsive">
-          <table class="table table-bordered table striped mt-1">
-            <thead class="text-white" id="table-head">
+          <table class="table table-bordered table-striped mt-1">
+            <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
               <tr>
                 <th class="table-th text-white text-center">FOLIO</th>
                 <th class="table-th text-white text-center">PRODUCTO</th>
@@ -41,14 +41,12 @@
               </tr>
             </tfoot>
           </table>         
-        </div>
-
-        
+        </div>       
 
 
       </div>
       <div class="modal-footer">        
-        <button type="button" class="btn btn-dark close-btn text-info" data-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn close-btn text-info" id="button-close" data-dismiss="modal" style="background: #023E8A!important;" >CERRAR</button>
       </div>
     </div>
   </div>

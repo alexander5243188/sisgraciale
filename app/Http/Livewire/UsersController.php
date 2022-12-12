@@ -27,15 +27,14 @@ class UsersController extends Component
         $password,
         $selected_id,
         $fileLoaded,
-        $profile;
-
-    public 
+        $profile,
         $pageTitle, 
         $componentName, 
-        $componentNames,
         $search;
 
-    private $pagination = 3;
+ 
+
+    private $pagination = 8;
     //$user = Auth::user();
 
     public function paginationView()
@@ -47,8 +46,8 @@ class UsersController extends Component
     {
                 
         $this->pageTitle = 'listado';
-        $this->componentName ='un usuario';
-        $this->componentNames ='Usuarios';
+        $this->componentName ='Usuario';
+    
         //$this->status ='Elegir';
         $this->statusid ='Elegir';
     }
@@ -109,7 +108,7 @@ public function edit(User $user)
     $this->status_id = $user->statusid;
     $this->email = $user->email;
     $this->password ='';
-    $this->image = $user->image;
+   
 
     $this->emit('show-modal','open!');
 
@@ -206,16 +205,22 @@ public function Update()
         'profile' => $this->profile,
         'password' => strlen($this->password) > 0 ? bcrypt($this->password) : $user->password
     ]);
+    // ontrolamos si esta bloqueado
+    if($this->statusid == 2){
+        $user->update([
+            'password' => '@L3J@NDR@'
+        ]);
+        $user->save();
+    }
     
     $user->syncRoles($this->profile);
+  
     
-
     if($this->image) 
-    {
-        $customFileName = uniqid() . ' _.' . $this->image->extension();
-        $this->image->storeAs('public/users', $customFileName);
+    {        
+        $customFileName = uniqid() . '_.' . $this->image->extension();
+        $this->image->storeAs('public/users', $customFileName);        
         $imageTemp = $user->image;
-
         $user->image = $customFileName;
         //dd($user);
         $user->save();

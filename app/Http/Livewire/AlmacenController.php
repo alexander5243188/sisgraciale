@@ -8,6 +8,7 @@ use App\Models\Almacen;
 use App\Http\Livewire\Scaner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Sale;
 
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -31,13 +32,15 @@ class AlmacenController extends Component
     use WithPagination;
 	use WithFileUploads;
 	use CartTrait;
-    public 		
+    public 
+		$graci,
 		$pageTitle,
 		$search,
 		$componentName,	
 		$selected_id,	
 		$fechaIngresoAlmacen,
 		$productoid,
+		$proveedorid,
 		$cantidadProductoActualizado,
 		$ingresoProducto,
 		$salidaProducto,
@@ -52,8 +55,8 @@ class AlmacenController extends Component
 
     public function mount()
 	{
-		$this->pageTitle = 'Listado en almacen';
-		$this->componentName = 'Producto';
+		$this->pageTitle = 'Listado';
+		$this->componentName = 'Almacen';
 		$this->ingresoProducto = 'INGRESO';
 		$this->salidaProducto ='';
 		$this->year = date('Y');
@@ -61,6 +64,8 @@ class AlmacenController extends Component
 		$this->totalStock =0;
 		$this->totalIngreso =0;
 		$this->totalSalida =0;	
+
+		$this->graci=[];
 	
 	}
 	public function paginationView()
@@ -80,6 +85,7 @@ class AlmacenController extends Component
 		$data = Almacen::join('products as p','p.id','almacens.product_id')
 			->join('shelves as s', 's.id', 'p.shelf_id')
 			->join('levels as l', 'l.id', 'p.level_id')
+			->join('proveedors as pro', 'pro.id', 'p.proveedor_id')
 			->select(
 				'almacens.*',
 				'p.name as nombre',
@@ -90,7 +96,8 @@ class AlmacenController extends Component
 				'p.stock as cantidadproducto',
 				's.name as estante',
 				'l.name as nivel',
-				'p.level_id as nivel'
+				'p.level_id as nivel',
+				'pro.name as proveedor'				
 		)
 		->where('p.name', 'like', '%' . $this->search .'%')		
 		->paginate($this->pagination);
@@ -98,7 +105,8 @@ class AlmacenController extends Component
 
 		$data = Almacen::join('products as p','p.id','almacens.product_id')
 			->join('shelves as s', 's.id', 'p.shelf_id')
-			->join('levels as l', 'l.id', 'p.level_id')			
+			->join('levels as l', 'l.id', 'p.level_id')
+			->join('proveedors as pro', 'pro.id', 'p.proveedor_id')		
 			->select(
 				'almacens.*',
 				'p.name as nombre',
@@ -109,7 +117,8 @@ class AlmacenController extends Component
 				'p.stock as cantidadproducto',
 				's.name as estante',
 				'l.name as nivel',
-				'p.level_id as nivel'
+				'p.level_id as nivel',
+				'pro.name as proveedor'	
 			)			
 		->orderBy('almacens.id','asc')
 		->paginate($this->pagination);	
@@ -118,6 +127,7 @@ class AlmacenController extends Component
         return view('livewire.almacen.almacen',  [
 			'data' => $data,
 			'products' => Product::orderBy('name', 'asc')->get(),
+			'proveedors' => Proveedor::orderBy('name', 'asc')->get(),
 			//'nombre' =>$var
 			
 		])
@@ -130,13 +140,15 @@ class AlmacenController extends Component
 		$rules = [            
 			'fechaIngresoAlmacen' => 'required',
             'productoid' => 'required|not_in:Elegir',
-            'cantidadProductoActualizado' => 'required'
+            'cantidadProductoActualizado' => 'required',
+			'proveedorid' => 'required|not_in:Elegir'
         ];
 		$messages = [
             
             'fechaIngresoAlmacen.required' => 'La fecha esrequerida',
             'productoid.required' => 'El producto es requerido',
-            'cantidadProductoActualizado.required' => 'La cantidad de producto es requerido',         
+            'cantidadProductoActualizado.required' => 'La cantidad de producto es requerido',
+			'proveedorid.required' => 'El proveedor es requerido'
         ];			
 		$this->validate($rules, $messages);
 	
@@ -144,10 +156,12 @@ class AlmacenController extends Component
 		$almacen = Almacen::create([		
 			'fecha' => $this->fechaIngresoAlmacen,
 			'product_id' => $this->productoid,
+			'proveedor_id' => $this->proveedorid,
 			'stock' => $this->cantidadProductoActualizado,
 			'stockI' => $this->cantidadProductoActualizado,
 			'ingreso' => $this->ingresoProducto,
 			'salida' => $this->salidaProducto,
+			'nombrevendedor' => Auth()->user()->name
 		]);
 
 		//-------------------------- ACTUALIZAR DATOS DEL PRODUCTO
@@ -193,11 +207,19 @@ class AlmacenController extends Component
 
 		
 		//-----------------------------------------
-		$repositorio = $this->reportesNombre($nirvana);
+		//$repositorio = $this->reportesNombre($nirvana);
 		//dd($repositorio);	
+		//$repositorio = $this->busqueda($nirvana);
+
+		//------------------------------------------------ PDF
+		$data = DB::table('almacens')
+		->select('almacens.*')
+		->where('almacens.product_id','=', $nirvana)
+		->get();
+		//dd($data);
 	}
 	
-	public function resetUI(){}
+	
 	public function reportesNombre($nirvana){				
 		$graciela = Almacen::join('products as p','p.id','almacens.product_id')
 		->select(
@@ -206,28 +228,23 @@ class AlmacenController extends Component
 		)
 		->where('almacens.product_id','=',$nirvana)	
 		->value('nombre');		
-		$this->busqueda($graciela);		
+		//$this->busqueda($graciela);		
 		
 		return($graciela);		
 	}
-	public function busqueda($nirvana){
-		$nombre = Almacen::join('products as p','p.id','almacens.product_id')
-		->select(
-			'almacens.*',
-			'p.name as nombre'			
-		)
-		->where('almacens.product_id','=',$nirvana)	
-		->value('nombre');
-		$this->getdata();		
-		$this->Recibir();	
+	
+	public function busqueda($nirvana){		
+		$data = DB::table('almacens')
+		->select('almacens.*')
+		->where('almacens.product_id','=', $nirvana)
+		->get();
+		//dd($data);
 	}
 
 
 
 	protected function getData()
-	{
-		
-		
+	{		
 		$nirvana = 1;
 		return Almacen::join('products as p','p.id','almacens.product_id')
 		->select(
@@ -235,19 +252,29 @@ class AlmacenController extends Component
 			'p.name as nombre'			
 		)
 		->where('almacens.product_id','=',$nirvana)	
-		//->value('nombre');
-		->get();
+		->value('nombre');
 		
+	}
+	public function Recibir() { $var = $this->getData();}
+	
+	public function resetUI(){
+		$this->fechaIngresoAlmacen = '';     
+        $this->productoid = 'Elegir';
+		$this->proveedorid = 'Elegir';
+		$this->cantidadProductoActualizado = ''; 			
+	}
+
+	public function alejandra(){
+			$from = Carbon::parse(Carbon::now())->format('Y-m-d') . ' 00:00:00';
+            $to = Carbon::parse(Carbon::now())->format('Y-m-d')   . ' 23:59:59';
+
+		$graci = Almacen::join('products as p','p.id','almacens.product_id') 
+            ->select('almacens.*','p.name as producto')
+            ->whereBetween('almacens.created_at', [$from, $to])
+            ->get();
+			dd($graci);
 	}
 
 
-public function Recibir() {
-    $var = $this->getData();
-	//dd($var);
-    
-}
 	
 }
-
-
-

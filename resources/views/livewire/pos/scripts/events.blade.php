@@ -30,7 +30,7 @@
 		window.livewire.on('print-last-id', saleId => {					
 			window.open("print://" + saleId,  '_self').close()
 		})
-		
+		window.livewire.on('imprimir', Msg => {	noty(Msg)})
 
 	})
 </script>

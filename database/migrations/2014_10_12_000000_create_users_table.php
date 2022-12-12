@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('phone',10)->nullable();
             $table->string('email',100)->unique();
             //$table->enum('profile',['ADMIN','EMPLOYEE'])->default('ADMIN');
-            $table->enum('profile',['ADMIN','VENDEDOR'])->default('ADMIN');
+            $table->enum('profile',['ADMIN','VENDEDOR','ALMACEN'])->default('ADMIN');
             //$table->enum('status',['ACTIVE','LOCKED'])->default('ACTIVE');
             //$table->enum('status',['ACTIVO','BLOQUEADO'])->default('ACTIVO');
             $table->foreignId('status_id')->constrained();

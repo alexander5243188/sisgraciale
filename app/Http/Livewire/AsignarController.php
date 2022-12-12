@@ -13,7 +13,12 @@ class AsignarController extends Component
 {
     use WithPagination;
 
-    public $role, $componentName, $permisosSelected = [], $old_permissions =[];
+    public 
+        $role, 
+        $componentName, 
+        $pageTitle,
+        $permisosSelected = [], 
+        $old_permissions =[];
     private $pagination = 5;
 
     public function paginationView()
@@ -24,7 +29,8 @@ class AsignarController extends Component
     public function mount()
     {
         $this->role = 'Elegir';
-        $this->componentName ='Asignar Permisos';       
+        $this->pageTitle = 'Asignar';
+        $this->componentName ='Permisos';       
     }
 
 
@@ -67,13 +73,13 @@ class AsignarController extends Component
     {
        if($this->role =='Elegir')
        {
-        $this->emit('sync-error','Selecciona un role válido');
+        $this->emit('sync-error','Selecciona un rol válido');
         return;
     }
 
     $role = Role::find($this->role);
     $role->syncPermissions([0]);
-    $this->emit('removeall',"Se revocaron todos los permisos al role $role->name ");
+    $this->emit('removeall',"Se revocaron todos los permisos al rol $role->name ");
 
 }
 
@@ -82,7 +88,7 @@ public function SyncAll()
 {
     if($this->role =='Elegir')
     {
-        $this->emit('sync-error','Selecciona un role válido');
+        $this->emit('sync-error','Selecciona un rol válido');
         return;
     }
 
@@ -90,7 +96,7 @@ public function SyncAll()
     $permisos = Permission::pluck('id')->toArray();
     $role->syncPermissions($permisos);
 
-    $this->emit('syncall',"Se sincronizaron todos los permisos al role $role->name ");
+    $this->emit('syncall',"Se sincronizaron todos los permisos al rol $role->name ");
 }
 
 
@@ -111,7 +117,7 @@ public function syncPermiso($state, $permisoName)
         }
 
     } else {
-        $this->emit('permi',"Elige un role válido");
+        $this->emit('permi',"Elige un rol válido");
     }
     
 }

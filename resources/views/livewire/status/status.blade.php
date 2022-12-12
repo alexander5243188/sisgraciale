@@ -8,8 +8,10 @@
                 @can('estado_crear')
                     <ul class="tabs tab-pills">
                         <li>
-                            <a href="javascript:void(0)"
-                                class="tabmenu btn "                            
+                            <a 
+                                style="background: #023E8A!important;" 
+                                href="javascript:void(0)"
+                                class="tabmenu bg-dark"                            
                                 id="button-add"                        
                                 data-toggle="modal"
                                 data-target="#theModal"
@@ -23,25 +25,24 @@
             <div class="widget-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">ESTADO DEL USUARIO</th>                                
-                                <th class="table-th text-white"></th> 
-                                @can('estado_actualizar')
-                                    <th class="table-th text-white text-center">ACCIONES</th>
-                                @endcan
+                                <th class="table-th text-white"></th>
+                                <th class="table-th text-white text-center"></th>                             
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $status)
                                 <tr>
-                                    <td><h6>{{ $status->name }}</h6></td>
+                                    <td><h6 class="badge badge-danger">{{ $status->name }}</h6></td>
                                     <td class="text-center">
 
                                     </td>
                                     <td class="text-center">
                                         @can('estado_editar')
-                                            <a 
+                                            <a
+                                                style="background: #013440!important;"  
                                                 href="javascript:void(0)" 
                                                 wire:click="Edit({{ $status->id }})"
                                                 class="btn mtmobile" 

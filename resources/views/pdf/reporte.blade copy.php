@@ -24,10 +24,6 @@
 			</tr>
 			<tr>
 				
-			 <!-- <td width="30%" style="vertical-align: top; padding-top: 10px; position: relative">
-					<img src="{{ asset('storage/home/alejandra.jpeg' )}}" alt="" class="invoice-logo">
-				</td>
--->
 				
 				<td width="70%" class="text-left text-company" style="vertical-align: top; padding-top: 10px">
 					@if($reportType == 0)

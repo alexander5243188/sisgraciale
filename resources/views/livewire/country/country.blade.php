@@ -8,9 +8,10 @@
                 @can('pais_crear')
                     <ul class="tabs tab-pills">
                         <li>
-                            <a 
+                            <a
+                                style="background: #023E8A!important;"  
                                 href="javascript:void(0)" 
-                                class="tabmenu" 
+                                class="tabmenu bg-dark"
                                 id="button-add" 
                                 data-toggle="modal" 
                                 data-target="#theModal"
@@ -28,13 +29,11 @@
             <div class="widget-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">PAIS</th>
-                                <th class="table-th text-white text-center"></th>
-                               
-                                    <th class="table-th text-white text-center"></th>
-                                
+                                <th class="table-th text-white text-center">Imagen</th>                               
+                                <th class="table-th text-white text-center"></th>                                
                             </tr>
                         </thead>
                         <tbody>
@@ -42,14 +41,17 @@
                             <tr>
                                 <td><h6>{{$country->name}}</h6></td>
                                 <td class="text-center">
-                                    
+                                    <span>
+										<img src="{{ asset('storage/countries/' . $country->imagen ) }}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+									</span>
                                 </td>
                                 <td class="text-center">
                                     @can('pais_editar')
                                         <a 
+                                            style="background: #023E8A!important;"   
                                             href="javascript:void(0)" 
                                             wire:click="Edit( {{$country->id}} )"
-                                            class="btn mtmobile" 
+                                            class="btn mtmobile btn-dark" 
                                             id = "button-edit" 
                                             title="Editar país">
                                             <i class="fas fa-edit"></i>
@@ -74,11 +76,9 @@
             </div>
         </div>
     </div>
-    @if ($selected_id < 1)
+   
         @include('livewire.country.form')
-    @else
-        @include('livewire.country.data.form')
-    @endif
+    
  
 </div>
 <script>

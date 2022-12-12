@@ -4,37 +4,36 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <h4 class="card-title">
-                    <b>{{$componentNames}}</b>
+                    <b>{{$componentName}} | {{$pageTitle}}</b>
                 </h4>
                 @can('usuario_crear')
                     <ul class="tabs tab-pills">
                         <li>
-                            <a 
+                            <a
+                                style="background: #023E8A!important;"  
                                 href="javascript:void(0)" 
-                                class="tabmenu" 
+                                class="tabmenu bg-dark" 
                                 id="button-add"
                                 data-toggle="modal" 
                                 data-target="#theModal"
                                 title="Añadir nuevo usuario">
-                                Agregar
+                                Registrar nuevo usuario
                             </a>
                         </li>
                     </ul>
                 @endcan
             </div>
-            @can('usuario_buscar')
-                @include('common.searchbox')
-            @endcan
+            
 
             <div class="widget-content">
 
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">USUARIO</th>
                                 <th class="table-th text-white text-center">TELÉFONO</th>
-                                <th class="table-th text-white text-center">EMAIL</th>
+                                <th class="table-th text-white text-center">CORREO ELECTRÓNICO </th>
                                 <th class="table-th text-white text-center">ESTADO</th>
                                 <th class="table-th text-white text-center">PERFIL</th>
                                 <th class="table-th text-white text-center">IMÁGEN</th>
@@ -54,8 +53,8 @@
                                     <span class="badge {{ $r->status == 'ACTIVO' ? 'badge-success' : 'badge-danger' }} text-uppercase">{{$r->status}}</span>
                                 </td>
                                 <td class="text-center text-uppercase">
-                                    <h6>{{$r->profile}}</h6>
-                                    <small><b>Roles:</b>{{implode(',',$r->getRoleNames()->toArray())}}</small>
+                                    <h6 class="badge-primary">{{$r->profile}}</h6>
+                                    <small><b>Rol:</b>{{implode(',',$r->getRoleNames()->toArray())}}</small>
                                 </td>
 
                                 <td class="text-center">
@@ -70,14 +69,17 @@
 
                              <td class="text-center">
                                 @can('usuario_editar')
+                                    @if(Auth()->user()->id != $r->id)
                                     <a 
+                                        style="background: #013440!important;" 
                                         href="javascript:void(0)" 
                                         wire:click="edit({{$r->id}})"
-                                        class="btn mtmobile" 
+                                        class="btn mtmobile btn-dark" 
                                         id= "button-edit"
                                         title="Editar datos usuario">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @endif
                                 @endcan
                             
                             @can('usuario_eliminar')
@@ -85,8 +87,8 @@
                                     <a 
                                         href="javascript:void(0)" 
                                         onclick="Confirm('{{$r->id}}')" 
-                                        class="btn" 
-                                        id= "button-delete"
+                                        class="btn btn-danger" 
+                                        id= ""
                                         title="Eliminar usuario">
                                         <i class="fas fa-trash"></i>
                                     </a>
@@ -108,11 +110,9 @@
 
 
 </div>
-@if ($selected_id < 1)
+
 		 @include('livewire.users.form')
-    @else
-        @include('livewire.users.data.form')
-    @endif
+  
 </div>
 
 

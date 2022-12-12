@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-sm-12 col-md-8">
 	<div class="form-group">
-		<label >Nuevo valor del IVA</label>
+		<label style="color: #000000;"><b>Nuevo valor del IVA</b></label>
 		<input 
             type="text" 
             wire:model.lazy="tax" 

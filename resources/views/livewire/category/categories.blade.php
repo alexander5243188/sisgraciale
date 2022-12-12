@@ -4,7 +4,7 @@
 		<div class="widget widget-chart-one">
 			<div class="widget-heading">
 				<h4 class="card-title">
-					<b>{{$componentNames}}  {{$pageTitle}}</b>
+					<b>{{$componentName}} | {{$pageTitle}}</b>
 				</h4>
 				<ul class="tabs tab-pills">
 
@@ -20,13 +20,14 @@
 						@endcan
 						@can('categoria_crear')
 							<a 
+								style="background: #023E8A!important;"
 								href="javascript:void(0)" 
-								class="tabmenu " 
+								class="tabmenu bg-dark" 
 								id="button-add" 
 								data-toggle="modal" 
 								data-target="#theModal"
 								title="Crear una nueva categoria">
-								Agregar
+								Registrar nueva categoria
 							</a>
 						@endcan
 					</li>
@@ -37,24 +38,20 @@
 			@endcan
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table class="table table-bordered table striped mt-1">
-						<thead class="text-white" id="table-head">
+					<table class="table table-bordered table-striped mt-1">
+						<thead class="text-white" id="table-head" style="background: #023E8A!important;">
 							<tr>
 								<th class="table-th text-white">DESCRIPCIÓN</th>
 								<th class="table-th text-white text-center">Quien registro</th>
-								<th class="table-th text-white text-center">IMAGEN</th>
-								
-									<th class="table-th text-white text-center">ACCIONES</th>
-								
+								<th class="table-th text-white text-center">IMAGEN</th>								
+								<th class="table-th text-white text-center">ACCIONES</th>								
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($categories as $category)
 							<tr>
 								<td><h6>{{$category->name}}</h6></td>
-								<td>
-									<h6>{{$category->user}}</h6>
-								</td>
+								<td class="text-center"><h6>{{$category->user}}</h6></td>
 								<td class="text-center">
 									<span>
 										<img 
@@ -65,14 +62,13 @@
 											class="rounded">
 									</span>
 								</td>
-
 								<td class="text-center">
 									@can('categoria_editar')
-										<a 
+										<a style="background: #013440!important;"
 											href="javascript:void(0)" 
 											wire:click="Edit({{$category->id}})" 
 											id="button-edit" 
-											class="btn mtmobile" 
+											class="btn mtmobile btn-dark" 
 											title="Editar categoria">
 											<i class="fas fa-edit"></i>
 										</a>
@@ -81,9 +77,9 @@
 										@can('categoria_eliminar') 
 											<a 
 												href="javascript:void(0)" 
-												id="button-delete" 
+												id="" 
 												onclick="Confirm('{{$category->id}}')" 
-												class="btn " 
+												class="btn btn-danger" 
 												title="Eliminar categoria">
 												<i class="fas fa-trash"></i>
 											</a>
@@ -99,11 +95,8 @@
 			</div>
 		</div>
 	</div>
-	@if ($selected_id < 1)
 		 @include('livewire.category.form')
-    @else
-        @include('livewire.category.data.form')
-    @endif
+  
 </div>
 
 

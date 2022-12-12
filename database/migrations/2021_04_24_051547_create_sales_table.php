@@ -26,8 +26,9 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('nombrecliente', 200)->nullable();;
+            $table->string('nombrecliente', 200)->nullable();
             $table->string('cedulacliente',200)->nullable();
+            $table->string('nombrevendedor',200)->nullable();
 
             $table->timestamps();
         });

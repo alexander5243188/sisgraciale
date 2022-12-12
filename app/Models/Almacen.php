@@ -11,10 +11,13 @@ class Almacen extends Model
     protected $fillable = [
 		'fecha',
         'product_id',
+        'proveedor_id',
         'stock',
         'stockI',
+        'stockS',
         'ingreso',
-        'salida'
+        'salida',
+        'nombrevendedor'
 	];
 	public function product(){return $this->belongsTo(Product::class);}	
 }

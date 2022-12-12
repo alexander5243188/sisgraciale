@@ -115,7 +115,7 @@ class IngresosController extends Component
 		$this->shelfid = $product->shelf_id;
 		$this->levelid = $product->level_id;
 		//$this->userid = $product->user_id;
-		$this->image = $product->image;
+		//$this->image = $product->image;
 		
 
 		$this->emit('modal-show','Show modal');

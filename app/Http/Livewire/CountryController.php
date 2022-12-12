@@ -39,7 +39,7 @@ class CountryController extends Component
             $data = Country::where('name', 'like', '%' . $this->search . '%')
             ->paginate($this->pagination);
         else
-            $data = Country::orderBy('id','desc')
+            $data = Country::orderBy('name','asc')
             ->paginate($this->pagination);
 
         return view('livewire.country.country', [
@@ -53,7 +53,7 @@ class CountryController extends Component
 		$record = Country::find($id, ['id','name','image']);
         $this->selected_id = $record->id;
 		$this->name = $record->name;		
-		$this->imagen = $record->image;
+		//$this->imagen = $record->image;
         //dd($record);
 
         
@@ -156,8 +156,8 @@ class CountryController extends Component
     public function resetUI()
     {
         $this->name = '';
-        $this->image = null;
+        //$this->image = null;
         $this->resetValidation();
-        $this->resetValidation();
+        //$this->resetValidation();
     }
 }

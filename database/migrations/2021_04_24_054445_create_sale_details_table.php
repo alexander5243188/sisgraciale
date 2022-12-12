@@ -17,8 +17,8 @@ class CreateSaleDetailsTable extends Migration
             $table->id();
             $table->decimal('price',10,2);
             $table->decimal('quantity',10,2);
-
             $table->foreignId('product_id')->constrained(); // product
+            $table->string('producto', 200);
             $table->foreignId('sale_id')->constrained();
 
 

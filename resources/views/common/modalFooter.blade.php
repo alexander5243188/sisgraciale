@@ -1,30 +1,35 @@
  </div>
       <div class="modal-footer">
         
-        <button 
+        <button
+          style="background: #023E8A!important;" 
           type="button" 
           wire:click.prevent="resetUI()" 
           id="button-close" 
-          class="btn close-btn btn-sm" 
+          class="btn btn-dark close-btn btn-sm" 
           data-dismiss="modal">
           CERRAR
         </button>
 
         @if($selected_id < 1)
         <button 
+          style="background: #023E8A!important;"
           type="button" 
-          wire:click.prevent="Store()" 
-          class="btn close-modal" 
+          wire:click="$refresh"
+          wire:click.prevent="Store()"          
+          class="btn btn-dark close-modal" 
           id="button-save">          
-          GUARDAR
+          <b>GUARDAR</b>
         </button>
         @else
         <button 
+          style="background: #023E8A!important;"
           type="button" 
-          wire:click.prevent="Update()" 
-          class="btn close-modal" 
+          wire:click="$refresh"
+          wire:click.prevent="Update()"           
+          class="btn btn-dark close-modal" 
           id="button-update">
-          ACTUALIZAR
+          <b>ACTUALIZAR</b>
         </button>
         @endif
 

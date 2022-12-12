@@ -17,7 +17,14 @@ class Denomination extends Model
 	];
 	public function type(){return $this->belongsTo(Type::class);}
 	public function sale(){return $this->hasMany(Sale::class);}
-
+	public function getImagenAttribute()
+	{	
+		if($this->image != null)
+			return (file_exists('storage/denominations/' . $this->image) ? $this->image : 'noimg.jpg');
+		else
+			return 'noimg.jpg';		
+		
+	}
 
 	
 

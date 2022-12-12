@@ -8,9 +8,9 @@
             </a>
             <ul class="navbar-item flex-row">
                 <li class="nav-item theme-logo">
-                    <a href="#">
+                    <a href="javascript:void(0);">
                         <img src="assets/img/comercial.png" class="navbar-logo" alt="logo">
-                        <b style="font-size: 19px; color:#3B3F5C">COMERCIAL FUENTES</b>                        
+                        <b style="font-size: 26px; color:#3B3F5C"><strong>COMERCIAL FUENTES</strong></b>                        
                     </a>
                 </li>
             </ul>
@@ -28,8 +28,12 @@
                 </li>
             </ul>
 
+      
 
-            <ul class="navbar-item flex-row navbar-dropdown">              
+       
+     
+
+            <div class="navbar-item flex-row navbar-dropdown">            
                 
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
@@ -39,27 +43,21 @@
                         id="userProfileDropdown" 
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
-                        aria-expanded="false">
-                        <i class="far fa-user text-dark"></i>
+                        aria-expanded="false"> 
+                        <img width="50px" height="50px" src="{{ asset('storage/users/'.Auth::user()->image) }}">                        
                     </a>
                     <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">                                
-                                <img width="50px" height="50px" src="{{ asset('storage/users/'.Auth::user()->image) }}"> 
-                                <div class="media-body">                                    
-                                    <span>  <p>{{Auth()->user()->profile}}</p> </span>                                    
-                                </div>
+                                                               
                             </div>
                         </div>
-                        <div class="dropdown-item">                            
-                            <p>{{Auth()->user()->name}}</p>                                                                      
-                        </div>
-                        
-                        
+                        <div class="dropdown-item"><strong>PERFIL: </strong>{{Auth()->user()->profile}}</div>
+                        <div class="dropdown-item"><strong>USUARIO: </strong>{{Auth()->user()->name}}</div>                        
                         <div class="dropdown-item">
                             <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit()" 
-                            >
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()" 
+                            >                                
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Salir</span>
                             </a>
                             <form action="{{ route('logout') }}" method="POST" id="logout-form">
@@ -68,6 +66,6 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </div>
         </header>
     </div>

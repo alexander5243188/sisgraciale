@@ -4,7 +4,7 @@
 		
 		<div class="input-group mb-4">
 			<div class="input-group-prepend">
-				<span class="input-group-text input-gp" id="input-search">
+				<span class="input-group-text input-gp" id="input-search" style="background: #023E8A!important;">
 					<i class="fas fa-search"></i>
 				</span>
 			</div>

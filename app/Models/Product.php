@@ -12,6 +12,7 @@ class Product extends Model
 	protected $fillable = [
 		'name',
         'barcode',
+		'nircode',
         'cost',
         'price',
         'stock',
@@ -22,7 +23,7 @@ class Product extends Model
 		'countrie_id',
         'category_id',
         //'companie_id',
-		'wholesaler_id',
+		//'wholesaler_id',
 		'proveedor_id',
         //'iva_id',
 		'shelf_id',
@@ -36,7 +37,7 @@ class Product extends Model
 	public function countrie(){return $this->belongsTo(Countrie::class);}
 	public function brand(){return $this->belongsTo(Brand::class);} 
 	//public function companie() {return $this->belongsTo(Companie::class);}
-	public function wholesaler(){return $this->belongsTo(Wholesaler::class);}
+	//public function wholesaler(){return $this->belongsTo(Wholesaler::class);}
 	public function proveedor(){return $this->belongsTo(Proveedor::class);}
     //public function iva()  { return $this->belongsTo(Iva::class);   }
 	public function category(){return $this->belongsTo(Category::class);}

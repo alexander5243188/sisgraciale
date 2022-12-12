@@ -7,13 +7,17 @@ use App\Models\User;
 use App\Models\Sale;
 use App\Models\SaleDetail;
 use Carbon\Carbon;
+use Livewire\WithPagination;
 
 
 class ReportsController extends Component
 {
+    use WithPagination;
 
     public $componentName, $data, $details, $sumDetails, $countDetails, 
     $reportType, $userId, $dateFrom, $dateTo, $saleId;
+
+    private $pagination = 10;
 
     public function mount()
     {
@@ -27,14 +31,19 @@ class ReportsController extends Component
         $this->saleId =0;
 
     }
+    public function paginationView()
+	{
+		return 'vendor.livewire.bootstrap';
+	}
 
     public function render()
     {
 
         $this->SalesByDate();
+       
 
         return view('livewire.reports.component', [
-            'users' => User::orderBy('name','asc')->get()
+            'users' => User::orderBy('name','asc')->get(), 
         ])->extends('layouts.theme.app')
         ->section('content');
     }
@@ -49,28 +58,35 @@ class ReportsController extends Component
         } else {
              $from = Carbon::parse($this->dateFrom)->format('Y-m-d') . ' 00:00:00';
              $to = Carbon::parse($this->dateTo)->format('Y-m-d')     . ' 23:59:59';
+             
         }
 
         if($this->reportType == 1 && ($this->dateFrom == '' || $this->dateTo =='')) {
+            $this->data = [];
             return;
         }
 
         if($this->userId == 0) 
         {
             $this->data = Sale::join('users as u','u.id','sales.user_id')
+            //->join('sale_details as s', 's.id', 's.sale_id')            
+            //->select('sales.*','u.name as user','s.producto as producto')
             ->select('sales.*','u.name as user')
-            ->whereBetween('sales.created_at', [$from, $to])
-            ->get();
+            ->whereBetween('sales.created_at', [$from, $to])  
+            ->orderBy('id','desc')          
+            ->get();            
         } else {
-            $this->data = Sale::join('users as u','u.id','sales.user_id')
+            $this->data = Sale::join('users as u','u.id','sales.user_id')                                 
             ->select('sales.*','u.name as user')
             ->whereBetween('sales.created_at', [$from, $to])
             ->where('user_id', $this->userId)
+            ->orderBy('id','desc')
             ->get();
         }
 
     }
 
+    // RETORNA LOS DATOS PARA EL MODAL, RECIBE $saleid y devuelve details para la iteracion
     public function getDetails($saleId)
     {
         $this->details = SaleDetail::join('products as p','p.id','sale_details.product_id')

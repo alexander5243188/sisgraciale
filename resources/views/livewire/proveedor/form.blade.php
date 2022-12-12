@@ -4,7 +4,7 @@
 	
 <div class="col-sm-12 col-md-12">
 	<div class="form-group">
-		<label class="bolded"> Nombre</label>
+		<label style="color: #000000;"><b>Nombre</b></label>
 		<input type="text" wire:model.lazy="name" 
 		class="form-control product-name" placeholder="Nombre" autofocus >
 		@error('name') <span class="text-danger er">{{ $message}}</span>@enderror
@@ -12,7 +12,7 @@
 </div>
 <div class="col-sm-12 col-md-8">
 	<div class="form-group">
-		<label >Dirección</label>
+		<label style="color: #000000;"><b>Dirección</b></label>
 		<input 
 			type="text"  
 			wire:model.lazy="addres" 
@@ -23,7 +23,7 @@
 </div>
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
-		<label>Departamento</label>
+		<label style="color: #000000;"><b>Departamento</b></label>
             <select wire:model='departmentid' class="form-control">
                 <!-- <option value="Elegir" disabled>Elegir</option> -->
                 <option value="Elegir">Elegir</option>
@@ -36,7 +36,7 @@
 </div>
 <div class="col-sm-12 col-md-12">
 	<div class="form-group">
-		<label >Correo electronico</label>
+		<label style="color: #000000;"><b>Correo electronico</b></label>
 		<input 
 			type="email" 			
 			wire:model.lazy="email" 
@@ -47,7 +47,7 @@
 </div>
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
-		<label >Número telefonico</label>
+		<label style="color: #000000;"><b>Número telefonico</b></label>
 		<input  
 			type="text" 			
 			wire:model.lazy="phone" 
@@ -58,9 +58,9 @@
 </div>
 <div class="col-sm-12 col-md-4">
 	<div class="form-group">
-		<label >NIT</label>
+		<label style="color: #000000;"><b>NIT</b></label>
 		<input  
-			type="text" 			
+			type="number" 			
 			wire:model.lazy="nit" 
 			class="form-control" 
 			placeholder="" >
@@ -69,29 +69,19 @@
 </div>
 
 
-
-
-
-
 <div class="col-sm-12 col-md-12">
 	<div class="form-group">
-		<label >Que mercaderia ofrece</label>
+		<label style="color: #000000;"><b>Que mercaderia ofrece</b></label>
 		
-		<input 
+		<textarea 
 			type="text"  
 			wire:model.lazy="description" 
 			class="form-control" 
-			placeholder="" >
+			placeholder="" rows="3" > </textarea>
 		@error('description') <span class="text-danger er">{{ $message}}</span>@enderror
 	</div>
 </div>
-
-
-
 </div>
-
-
-
 
 @include('common.modalFooter')
 

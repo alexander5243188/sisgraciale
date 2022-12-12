@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Alert;
 use Livewire\WithPagination;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Str;
 
 
 class AlertController extends Component
@@ -85,10 +87,16 @@ class AlertController extends Component
         ];
 
         $this->validate($rules, $messages);
+        
+        $valor = Str::limit($this->name,2,'');
+        $cadena = Str::finish( 'aler-',$valor);
+    
+        //dd($nirvana);
 
         $alert = Alert::create([
-            'name' => $this->name
-        ]);
+            'name' => $this->name ,
+            'alert_id' => $cadena
+        ]);        
         $alert->save();
         $this->resetUI();
         $this->emit('alert-added-modal','Alerta registrado');

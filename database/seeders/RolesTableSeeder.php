@@ -24,33 +24,62 @@ class RolesTableSeeder extends Seeder
         
         //$empleado = Role::create(['name' => 'Employee']);
         $empleado = Role::create(['name' => 'Vendedor']);
+        $almacen = Role::create(['name' => 'Almacen']);
 
+
+
+        //------------------------------------------------------------------DASH botones
+        Permission::create(['name' => 'boton_almacen_menu']);
+        Permission::create(['name' => 'categoria_pagina_menu']);
+        Permission::create(['name' => 'marca_pagina_menu']);
+        Permission::create(['name' => 'producto_pagina_menu']);
+
+        Permission::create(['name' => 'boton_compras_menu']);
+        Permission::create(['name' => 'proveedor_pagina_menu']);
+
+        Permission::create(['name' => 'boton_ventas_menu']);
+        Permission::create(['name' => 'cliente_pagina_menu']);
+        Permission::create(['name' => 'arqueo_pagina_menu']);
+
+        Permission::create(['name' => 'boton_acceso_menu']);
+        Permission::create(['name' => 'usuarios_pagina_menu']);
+        Permission::create(['name' => 'permisos_pagina_menu']);
+
+        Permission::create(['name' => 'boton_reporte_menu']);
+        Permission::create(['name' => 'reporte_almacen_pagina_menu']);
+        Permission::create(['name' => 'reporte_ventas_pagina_menu']);
+
+        Permission::create(['name' => 'boton_herramienta_menu']);
+        Permission::create(['name' => 'pagina_ayuda_menu']);
+        Permission::create(['name' => 'alerta_pagina_menu']);
+        Permission::create(['name' => 'denominaciones_pagina_menu']);
+        Permission::create(['name' => 'pais_pagina_menu']);
 
 
         //creación de permisos vistas:
-        //client
-        //Permission::create(['name' => 'cliente_pagina']);
+        //---------------------------------------------------------------------client
+        Permission::create(['name' => 'cliente_pagina']);
         //Permission::create(['name' => 'cliente_crear']);
         //Permission::create(['name' => 'cliente_actualizar']);
         //Permission::create(['name' => 'cliente_eliminar']);
         //Permission::create(['name' => 'cliente_editar']);
         //Permission::create(['name' => 'cliente_buscar']);
 
-        //Alertas
+        //--------------------------------------------------------------------Alertas
         Permission::create(['name' => 'alerta_pagina']);
-        //Permission::create(['name' => 'alerta_crear']);
+        Permission::create(['name' => 'alerta_crear']);
         //Permission::create(['name' => 'alerta_actualizar']);
         //Permission::create(['name' => 'alerta_eliminar']);
         Permission::create(['name' => 'alerta_editar']);
-        Permission::create(['name' => 'alerta_buscar']);
+        //Permission::create(['name' => 'alerta_buscar']);
 
-        //Asignar        
+        //---------------------------------------------------------------------Asignar        
         Permission::create(['name' => 'asignar_pagina']);
         Permission::create(['name' => 'asignar_sincronizar_todos']);
         Permission::create(['name' => 'asignar_revocar_todos']);
         Permission::create(['name' => 'asignar_marcar']);       
 
-        //Brand
+        //----------------------------------------------------------------------Brand
         Permission::create(['name' => 'marca_pagina']);
         Permission::create(['name' => 'marca_crear']);
         //Permission::create(['name' => 'marca_actualizar']);
@@ -58,12 +87,12 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'marca_editar']);
         Permission::create(['name' => 'marca_buscar']);
 
-        //Cashout
+        //---------------------------------------------------------------------Cashout
         Permission::create(['name' => 'dinero_entregado_pagina']);
         Permission::create(['name' => 'dinero_entregado_imprimir']);
         Permission::create(['name' => 'dinero_entregado_detalle']);
 
-        //Category
+        //--------------------------------------------------------------------Category
         Permission::create(['name' => 'categoria_pagina']);
         //Permission::create(['name' => 'categoria_importar']);
         Permission::create(['name' => 'categoria_crear']);
@@ -72,18 +101,18 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'categoria_editar']);
         Permission::create(['name' => 'categoria_buscar']);
 
-        //Country
+        //---------------------------------------------------------------------Country
         Permission::create(['name' => 'pais_pagina']);
-        //Permission::create(['name' => 'pais_crear']);
+        Permission::create(['name' => 'pais_crear']);
         //Permission::create(['name' => 'pais_actualizar']);
-        //Permission::create(['name' => 'pais_eliminar']);
-        //Permission::create(['name' => 'pais_editar']);
+        Permission::create(['name' => 'pais_eliminar']);
+        Permission::create(['name' => 'pais_editar']);
         Permission::create(['name' => 'pais_buscar']);
 
-        //Dash
+        //-----------------------------------------------------------------------Dash
         Permission::create(['name' => 'panel_Administrativo_pagina']);
 
-        //Denomination
+        //---------------------------------------------------------------Denomination
         Permission::create(['name' => 'denominacion_pagina']);
         //Permission::create(['name' => 'denominacion_crear']);
         //Permission::create(['name' => 'denominacion_actualizar']);
@@ -91,19 +120,19 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'denominacion_editar']);
         Permission::create(['name' => 'denominacion_buscar']);
 
-        //Department
+        //-----------------------------------------------------------------Department
         Permission::create(['name' => 'departamento_pagina']);
         //Permission::create(['name' => 'departamento_crear']);
         //Permission::create(['name' => 'departamento_actualizar']);
         //Permission::create(['name' => 'departamento_eliminar']);
        // Permission::create(['name' => 'departamento_editar']);
-        Permission::create(['name' => 'departamento_buscar']);
+        //Permission::create(['name' => 'departamento_buscar']);
 
         //Import
 
      
 
-        //Iva
+        //----------------------------------------------------------------------Iva
        // Permission::create(['name' => 'iva_pagina']);
         //Permission::create(['name' => 'iva_crear']);
         //Permission::create(['name' => 'iva_actualizar']);
@@ -111,7 +140,7 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'iva_editar']);
         //Permission::create(['name' => 'iva_buscar']);
 
-        //Permisos
+        //------------------------------------------------------------------Permisos
         //Permission::create(['name' => 'permiso_pagina']);
         //Permission::create(['name' => 'permiso_crear']);
         //Permission::create(['name' => 'permiso_actualizar']);
@@ -121,9 +150,9 @@ class RolesTableSeeder extends Seeder
 
         //Pos
 
-        //Products
+        //-----------------------------------------------------------------Products
         Permission::create(['name' => 'producto_pagina']); 
-        Permission::create(['name' => 'producto_importar']);
+        //Permission::create(['name' => 'producto_importar']);
         Permission::create(['name' => 'producto_crear']);
         //Permission::create(['name' => 'producto_actualizar']);
         Permission::create(['name' => 'producto_eliminar']);
@@ -132,7 +161,7 @@ class RolesTableSeeder extends Seeder
 
         //Regents
         //Reports
-        //Roles 
+        //-------------------------------------------------------------------Roles 
         Permission::create(['name' => 'roles_pagina']);
         //Permission::create(['name' => 'roles_crear']);
         //Permission::create(['name' => 'roles_actualizar']);
@@ -140,7 +169,7 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'roles_editar']);
         Permission::create(['name' => 'roles_buscar']);
         
-        //Status
+        //------------------------------------------------------------------Status
         //Permission::create(['name' => 'estado_pagina']);
         //Permission::create(['name' => 'estado_crear']);
         //Permission::create(['name' => 'estado_actualizar']);
@@ -148,7 +177,7 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'estado_editar']);
         //Permission::create(['name' => 'estado_buscar']);
 
-        //Type
+        //-------------------------------------------------------------------Type
         //Permission::create(['name' => 'tipo_deneminacion_pagina']);
         //Permission::create(['name' => 'tipo_denominacion_crear']);
         //Permission::create(['name' => 'tipo_denominacion_actualizar']);
@@ -156,7 +185,7 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'tipo_deneminacion_editar']);
         //Permission::create(['name' => 'tipo_deneminacion_buscar']);
 
-        //Users
+        //-------------------------------------------------------------------Users
         Permission::create(['name' => 'usuario_pagina']);
         Permission::create(['name' => 'usuario_crear']);
         //Permission::create(['name' => 'usuario_actualizar']);
@@ -165,33 +194,33 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'usuario_buscar']);
 
         //Utils
-        //Wholesaler
-        Permission::create(['name' => 'mayorista_pagina']);
-        Permission::create(['name' => 'mayorista_crear']);
+        //---------------------------------------------------------------proveedor
+        Permission::create(['name' => 'proveedor_pagina']);
+        Permission::create(['name' => 'proveedor_crear']);
         //Permission::create(['name' => 'mayorista_actualizar']);
-        Permission::create(['name' => 'mayorista_eliminar']);
-        Permission::create(['name' => 'mayorista_editar']);
-        Permission::create(['name' => 'mayorista_buscar']);
+        Permission::create(['name' => 'proveedor_eliminar']);
+        Permission::create(['name' => 'proveedor_editar']);
+        Permission::create(['name' => 'proveedor_buscar']);
 
         //creación de permisos navegación
 
-        //Inventario
-        Permission::create(['name' => 'Inventario_pagina']);
-        //Permission::create(['name' => 'Inventario_añadir']);
-        //Permission::create(['name' => 'Inventario_actualizar']);
-        //Permission::create(['name' => 'Inventario_eliminar']);
-        //Permission::create(['name' => 'Inventario_editar']);
-        //Permission::create(['name' => 'Inventario_buscar']);
+        //----------------------------------------------------------------Almacen
+        Permission::create(['name' => 'almacen_pagina']);
+        Permission::create(['name' => 'boton_registrar_cantidades']);
+        //Permission::create(['name' => 'almacen_actualizar']);
+        //Permission::create(['name' => 'almacen_eliminar']);
+        //Permission::create(['name' => 'almacen_editar']);
+        //Permission::create(['name' => 'almacen_buscar']);
         
     
    
-        //Sales
+        //---------------------------------------------------------------------Sales
         Permission::create(['name' => 'venta_pagina']);
         Permission::create(['name' => 'venta_crear']);
         
      
 
-        //Permisos
+        //------------------------------------------------------------------Permisos
         Permission::create(['name' => 'permiso_pagina']);
         //Permission::create(['name' => 'permiso_crear']);
         //Permission::create(['name' => 'permiso_actualizar']);
@@ -202,7 +231,7 @@ class RolesTableSeeder extends Seeder
      
        
   
-        //Arqueos
+        //-------------------------------------------------------------------Arqueos
         Permission::create(['name' => 'arqueo_pagina']);
         //Permission::create(['name' => 'arqueo_crear']);
         //Permission::create(['name' => 'arqueo_actualizar']);
@@ -210,124 +239,152 @@ class RolesTableSeeder extends Seeder
         //Permission::create(['name' => 'arqueo_editar']);
         //Permission::create(['name' => 'arqueo_buscar']);
         
-        //Reportes
-        Permission::create(['name' => 'reporte_pagina']);
-        Permission::create(['name' => 'reporte_pdf']);
+        //--------------------------------------------------------Reportes ventas
+        Permission::create(['name' => 'reporte_ventas_pagina']);
+        Permission::create(['name' => 'reporte_ventas_pdf']);
         //Permission::create(['name' => 'reporte_excel']);
 
-
+        //--------------------------------------------------------Reportes inventario
+        Permission::create(['name' => 'reporte_almacen_pagina']);
+        Permission::create(['name' => 'reporte_almacen_pdf']);
 
 
         //asignar permisos al role Admin
         $admin->givePermissionTo([
-            //---------> PANEL ADMINISTRATIVO
-            'panel_Administrativo_pagina',
-            //---------> CLIENTE
-            //'cliente_pagina',
-            //'cliente_crear',
-            //'cliente_actualizar',
-            //'cliente_eliminar',
-            //'cliente_editar',
-            //'cliente_buscar',
-            //---------> INVENTARIO
-            'Inventario_pagina',
-            //---------> CATEGORIA
-            'categoria_pagina',
-            'categoria_crear',
-            //'categoria_importar',
-            //'categoria_actualizar',
-            'categoria_eliminar',
-            'categoria_editar',
-            'categoria_buscar',
-            //---------> PRODUCTO
-            'producto_pagina',
-            'producto_importar',
-            'producto_crear',
-            //'producto_actualizar',
-            'producto_eliminar',
-            'producto_editar',
-            'producto_buscar',
-            //---------> USUARIO
-            'usuario_pagina',
-            'usuario_crear',
-            //'usuario_actualizar',
-            'usuario_eliminar',
-            'usuario_editar',
-            'usuario_buscar',
-            //---------> DENOMINACIONES
-            'denominacion_pagina',
-            //'denominacion_crear',
-            //'denominacion_actualizar',
-            //'denominacion_eliminar',
-            //'denominacion_editar',
-            'denominacion_buscar',
-            //---------> ROLES
-            'roles_pagina',
-            //'roles_crear',
-            //'roles_actualizar',
-            //'roles_eliminar',
-            //'roles_editar',
-            'roles_buscar',
-            //---------> PERMISOS
-            'permiso_pagina',
-            //'permiso_crear',
-            //'permiso_actualizar',
-            //'permiso_eliminar',
-            //'permiso_editar',
-            'permiso_buscar',
-            //---------> VENTAS
-            'venta_pagina',
-            'venta_crear',
-            //---------> ASIGNAR ROLES
+             //------------------------------------------------------------------DASH botones
+             'boton_almacen_menu',
+             'categoria_pagina_menu',
+             'marca_pagina_menu',
+             'producto_pagina_menu',
+     
+             'boton_compras_menu',
+             'proveedor_pagina_menu',
+     
+             'boton_ventas_menu',
+             'cliente_pagina_menu',
+             'arqueo_pagina_menu',
+     
+             'boton_acceso_menu',
+             'usuarios_pagina_menu',
+             'permisos_pagina_menu',
+     
+             'boton_reporte_menu',
+             'reporte_almacen_pagina_menu',
+             'reporte_ventas_pagina_menu',
+     
+             'boton_herramienta_menu',
+             'pagina_ayuda_menu',
+             'alerta_pagina_menu',
+             'denominaciones_pagina_menu',
+             'pais_pagina_menu',
+            //--------------------------------------------------------------------Clientes
+            'cliente_pagina',
+            //--------------------------------------------------------------------Alertas
+            'alerta_pagina', 
+            'alerta_crear',
+            'alerta_editar',
+            //---------------------------------------------------------------------Asignar        
             'asignar_pagina',
             'asignar_sincronizar_todos',
             'asignar_revocar_todos',
-            'asignar_marcar',
-            //--------->  CAMBIOS, VENTAS
-            'dinero_entregado_pagina',
-            //'dinero_entregado_imprimir',
-            'dinero_entregado_detalle',
-            //---------> REPORTE
-            'reporte_pagina',
-            'reporte_pdf',
-            //'reporte_excel'
-            //-----------------> MARCA
+            'asignar_marcar',    
+            //----------------------------------------------------------------------Brand
             'marca_pagina',
             'marca_crear',          
             'marca_eliminar',
             'marca_editar',
-            'marca_buscar',
-            //-----------------> PROVEEDROR
-            'mayorista_pagina',
-            'mayorista_crear',            
-            'mayorista_eliminar',
-            'mayorista_editar',
-            'mayorista_buscar'
-        ]);
-        //asignar permisos al role Employee
-        $empleado->givePermissionTo([
-            //---------> CATEGORIA
-            //'categoria_pagina',
-            //--------->
-            'producto_pagina',
-            //---------> USUARIOS
-            //'usuario_pagina',
-            //---------> DENOMINACIONES
-            //'denominacion_pagina',
-            //---------> ROLES
-            'roles_pagina',
-            //---------> PERMISOS
-            //'permiso_pagina',
-            //---------> VENTAS
-            'venta_pagina',            
-            'venta_crear',
-            //---------> ASIGNAR ROLES
-            //'asignar_pagina',
-            //---------> CAMBIOS, VENTAS
+            'marca_buscar',    
+            //---------------------------------------------------------------------Cashout
             'dinero_entregado_pagina',
-            //---------> REPORTE
-            'reporte_pagina',
-            'reporte_pdf',
+            'dinero_entregado_imprimir',
+            'dinero_entregado_detalle',    
+            //--------------------------------------------------------------------Category
+            'categoria_pagina',
+            'categoria_crear',            
+            'categoria_eliminar',
+            'categoria_editar',
+            'categoria_buscar',    
+            //---------------------------------------------------------------------Country
+            'pais_pagina',
+            'pais_crear',            
+            'pais_eliminar', 
+            'pais_editar',
+            'pais_buscar',    
+            //-----------------------------------------------------------------------Dash
+            'panel_Administrativo_pagina',    
+            //---------------------------------------------------------------Denomination
+            'denominacion_pagina',            
+            'denominacion_buscar',    
+            //-----------------------------------------------------------------Department
+            'departamento_pagina',    
+            //-----------------------------------------------------------------Products
+            'producto_pagina',            
+            'producto_crear',            
+            'producto_eliminar',
+            'producto_editar',
+            'producto_buscar',            
+            //-------------------------------------------------------------------Roles 
+            'roles_pagina',            
+            'roles_buscar',            
+            //-------------------------------------------------------------------Users
+            'usuario_pagina',
+            'usuario_crear',            
+            'usuario_eliminar',
+            'usuario_editar',
+            'usuario_buscar',                
+            //---------------------------------------------------------------proveedor
+            'proveedor_pagina',
+            'proveedor_crear',            
+            'proveedor_eliminar',
+            'proveedor_editar',
+            'proveedor_buscar',
+            //----------------------------------------------------------------Almacen
+            'almacen_pagina',
+            'boton_registrar_cantidades',
+            //---------------------------------------------------------------------Sales
+            'venta_pagina',
+            'venta_crear',
+            //------------------------------------------------------------------Permisos
+            'permiso_pagina',         
+            'permiso_buscar',
+            //-------------------------------------------------------------------Arqueos
+            'arqueo_pagina',
+            //--------------------------------------------------------Reportes ventas
+            'reporte_ventas_pagina',
+            'reporte_ventas_pdf',          
+            //--------------------------------------------------------Reportes inventario
+            'reporte_almacen_pagina',
+            'reporte_almacen_pdf'
+        ]);
+        //---------------------------------------------------------asignar permisos al rol vendedor
+        $empleado->givePermissionTo([                
+        //---------------------------------------------------------------------Cashout
+        'dinero_entregado_pagina',
+        'dinero_entregado_imprimir',
+        'dinero_entregado_detalle', 
+        //---------------------------------------------------------------proveedor
+        'proveedor_pagina', 
+        'proveedor_buscar',       
+        //-----------------------------------------------------------------Products
+        'producto_pagina', 
+        'producto_buscar',                 
+        //---------------------------------------------------------------------Sales
+        'venta_pagina',
+        'venta_crear',
+        //-------------------------------------------------------------------Arqueos
+        'arqueo_pagina',
+        //--------------------------------------------------------Reportes ventas
+        'reporte_ventas_pagina',
+        'reporte_ventas_pdf',
+        ]);     
+
+        //---------------------------------------------------------asignar permisos al rol almacen
+        $almacen->givePermissionTo([         
+        //----------------------------------------------------------------Almacen
+        'almacen_pagina',
+        //--------------------------------------------------------Reportes inventario
+        'reporte_almacen_pagina',
+        'reporte_almacen_pdf'
         ]);
 
 
@@ -335,13 +392,19 @@ class RolesTableSeeder extends Seeder
 
 
         //asignar rol al usuario admin
-        $uAdmin = User::find(1);
-        $uAdmin->assignRole('Admin');
+        $Admin = User::find(1);
+        $Admin->assignRole('Admin');
        
 
         //asignar rol al usuario empleado
-        $uEmpleado = User::find(2);
+        $Empleado = User::find(2);
         //$uEmpleado->assignRole('Employee');
-        $uEmpleado->assignRole('Vendedor');
+        $Empleado->assignRole('Vendedor');
+
+        $Almacen = User::find(3);                
+        $Almacen->assignRole('Vendedor');
+
+        $Almacen = User::find(4);        
+        $Almacen->assignRole('Almacen');
     }
 }

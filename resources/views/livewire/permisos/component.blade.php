@@ -4,15 +4,16 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <h4 class="card-title">
-                    <b>{{ $componentNames}}</b>
+                    <b>{{ $componentName}} | {{$pageTitle}}</b>
                 </h4>
                 @can('permiso_crear')
                     <ul class="tabs tab-pills">
                         <li>
                             <!--
                             <a 
+                                style="background: #023E8A!important;" 
                                 href="javascript:void(0)" 
-                                class="tabmenu" 
+                                class="tabmenu bg-dark"
                                 id="button-add"
                                 data-toggle="modal" 
                                 data-target="#theModal"
@@ -32,7 +33,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table striped mt-1">
-                        <thead class="text-white" id="table-head">
+                        <thead class="text-white" id="table-head" style="background: #023E8A!important;" >
                             <tr>
                                 <th class="table-th text-white">IDENTIFICADOR</th>
                                 <th class="table-th text-white float-left">DESCRIPCIÓN</th>
@@ -53,7 +54,8 @@
                              <td class="text-center">
                                 @can('permiso_editar')
                                 <!--
-                                    <a 
+                                    <a
+                                        style="background: #013440!important;"  
                                         href="javascript:void(0)" 
                                         wire:click="Edit({{$permiso->id}})"
                                         class="btn mtmobile" 
@@ -69,7 +71,7 @@
                                     <a 
                                         href="javascript:void(0)" 
                                         onclick="Confirm('{{$permiso->id}}')" 
-                                        class="btn" 
+                                        class="btn btn-danger" 
                                         id="button-delete"
                                         title="Eliminar permiso">
                                         <i class="fas fa-trash"></i>
